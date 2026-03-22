@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="습관 사막에서 지친 당신을 위한 습관 오아시스, 해보아. 나만의 습관 식물을 키우며 매일 성장하세요.">
+<meta property="og:title" content="해보아 — 습관 오아시스">
+<meta property="og:description" content="식물을 키우듯 자연스럽게, 당신만의 습관을 만들어 가세요.">
+<meta property="og:image" content="https://cdn.prod.website-files.com/672736dca219f17588e44452/6727804daca8c9d3702d7cf1_PocoKeen1.png">
+<title>해보아 | 습관 오아시스</title>
+<link rel="icon" href="https://cdn.prod.website-files.com/672736dca219f17588e44452/67276e37308f1e1139aeac11_haboa_logo_48px.png">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Gamja+Flower&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ╔══════════════════════════════════════════╗
+   ║  해보아 — 스토리북 리뉴얼               ║
+   ║  Color System:                           ║
+   ║  Gold #FFC900 · Sky #1ABCFF             ║
+   ║  Coral #FF6B8A · Violet #7C5CFC         ║
+   ║  Mint #2ED492                            ║
+   ╚══════════════════════════════════════════╝ */
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  /* ── 5-Color Theme ── */
+  --gold:#FFC900;
+  --gold-light:#FFF3BF;
+  --gold-dim:rgba(255,201,0,0.12);
+  --gold-dark:#CC9F00;
+
+  --sky:#1ABCFF;
+  --sky-light:#C9EEFF;
+  --sky-dim:rgba(26,188,255,0.12);
+  --sky-dark:#0E8FCC;
+
+  --coral:#FF6B8A;
+  --coral-light:#FFD4DD;
+  --coral-dim:rgba(255,107,138,0.12);
+
+  --violet:#7C5CFC;
+  --violet-light:#DDD2FF;
+  --violet-dim:rgba(124,92,252,0.12);
+
+  --mint:#2ED492;
+  --mint-light:#C4F5DE;
+  --mint-dim:rgba(46,212,146,0.12);
+
+  /* ── Neutrals ── */
+  --bg:#FFFDF5;
+  --bg-warm:#FFF8E7;
+  --bg-cream:#FEF5DE;
+  --ink:#241E14;
+  --ink-60:#6B5E4A;
+  --ink-30:#AEA08C;
+  --ink-10:#DED5C4;
+  --white:#FFFFFF;
+}
+
+html{scroll-snap-type:y mandatory;overflow-x:hidden}
+body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--bg)}
+::selection{background:var(--gold-light);color:var(--ink)}
+
+/* ═══ PAPER TEXTURE ═══ */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 120px,rgba(0,0,0,0.008) 120px,rgba(0,0,0,0.008) 121px),
+    repeating-linear-gradient(90deg,transparent,transparent 120px,rgba(0,0,0,0.006) 120px,rgba(0,0,0,0.006) 121px);
+}
+
+/* ═══ NAV ═══ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:17px 38px;display:flex;justify-content:center;align-items:center;
+  transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-inner{
+  width:100%;max-width:1100px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.nav.scrolled{
+  background:rgba(255,253,245,0.92);backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 var(--ink-10);
+}
+.nav-logo-wrap{
+  position:relative;display:flex;align-items:center;justify-content:center;
+}
+.nav-logo-wrap::before{
+  content:'';position:absolute;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--gold);z-index:0;
+}
+.nav-logo{height:38px;transition:transform 0.3s;position:relative;z-index:1}
+.nav-logo:hover{transform:scale(1.05)}
+.nav-links{display:flex;gap:29px;align-items:center}
+/* [텍스트 크기] 네비게이션 메뉴 링크 */
+.nav-links a{
+  text-decoration:none;font-family:'Gamja Flower',cursive;
+  font-size:20px;color:rgba(255,255,255,0.85);transition:color 0.2s;
+}
+/* 스크롤 전: 흰색 호버 */
+.nav-links a:hover{color:#fff}
+/* 스크롤 후: gold 호버 */
+.nav.scrolled .nav-links a{color:var(--ink-60)}
+.nav.scrolled .nav-links a:hover{color:var(--gold-dark)}
+.nav-insta{
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.85);transition:color 0.2s, transform 0.2s;
+}
+.nav-insta svg{width:26px;height:26px}
+.nav-insta:hover{color:#fff;transform:scale(1.1)}
+.nav.scrolled .nav-insta{color:var(--ink-60)}
+.nav.scrolled .nav-insta:hover{color:var(--gold-dark);transform:scale(1.1)}
+.hamburger{display:none;background:none;border:none;cursor:pointer}
+.hamburger span{display:block;width:26px;height:2.5px;background:var(--white);margin:5px 0;border-radius:2px}
+.nav.scrolled .hamburger span{background:var(--ink)}
+
+/* Mobile Nav Drawer */
+.mobile-drawer{
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;
+  background:rgba(255,253,245,0.98);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  display:none;
+}
+.mobile-drawer a{
+  font-family:'Gamja Flower',cursive;font-size:28px;
+  color:var(--ink);text-decoration:none;
+}
+.mobile-drawer .close-btn{
+  position:absolute;top:20px;right:24px;
+  font-size:36px;line-height:1;background:none;border:none;cursor:pointer;color:var(--ink);
+  padding:8px;
+}
+.mobile-drawer .drawer-insta{
+  display:flex;align-items:center;
+}
+
+/* ═══ PAGES (scroll-snap) ═══ */
+.page{
+  min-height:100vh;scroll-snap-align:start;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:80px 32px;
+}
+
+/* ── PAGE 1: HERO ── */
+.page-hero{
+  flex-direction:column;text-align:center;
+  background:var(--gold);
+  position:relative;justify-content:flex-start;
+  min-height:100vh;
+  padding:76px 0 20px 0;
+  overflow:visible; /* 배경 이미지 하단 잘림 방지 */
+}
+/* Sky color fills the top portion behind the text */
+.page-hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:55%;
+  background:var(--sky);z-index:0;
+}
+.page-hero .bg-img{
+  position:relative;z-index:1;
+  width:100%;
+  height:clamp(180px, 25vw, 320px);
+  overflow:visible;
+}
+.page-hero .bg-img img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 30%;
+  display:block;
+  overflow:visible;
+}
+.page-hero .deco-ring{
+  position:absolute;width:480px;height:480px;border-radius:50%;
+  border:1.5px dashed rgba(255,255,255,0.25);opacity:0.4;
+  animation:spinSlow 50s linear infinite;top:10%;
+}
+.page-hero .deco-ring:nth-child(3){
+  width:380px;height:380px;border-color:rgba(255,255,255,0.15);
+  animation-direction:reverse;animation-duration:35s;
+}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+
+.hero-inner{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;padding:0 32px;margin-top:-20px} /* ← [수정] 히어로 텍스트 20px 위로 이동 */
+/* [수정] 뱃지 라벨 제거됨 — 기존: .hero-badge 스타일 존재 */
+
+/* [캐릭터 위치/크기] 히어로 캐릭터 이미지 — width: 크기, margin-top: 위치(음수=위로) */
+.hero-character{
+  width:160px;height:auto;                    /* ← 캐릭터 크기 (PC) */
+  position:relative;z-index:2;margin-top:-20px; /* ← 기존 -40px에서 20px 아래로 이동 */
+  filter:drop-shadow(0 12px 32px rgba(0,0,0,0.15));
+  animation:fadeUp 0.7s 0.3s both;
+}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* [텍스트 크기] 히어로 메인 타이틀 — clamp(최소, 반응형, 최대) */
+.page-hero h1{
+  font-family:'Gamja Flower',cursive;
+  font-size:clamp(32px,6.4vw,64px);line-height:1; /* ← [수정] 메인 타이틀 크기 20% 축소 — 기존: clamp(40px,8vw,80px) */
+  letter-spacing:-0.02em;margin-bottom:24px; /* ← [수정] 타이틀과 버튼 사이 여백 — 기존: 16px */
+  color:#fff;
+  text-shadow:0 2px 16px rgba(0,0,0,0.08);
+  animation:fadeUp 0.7s 0.4s both;
+}
+.page-hero h1 .c-gold{color:var(--gold)}
+.page-hero h1 .c-sky{color:#fff}
+
+/* [텍스트 크기] 히어로 설명 문구 */
+.hero-sub{
+  font-family:'Nunito',sans-serif;font-weight:600;
+  font-size:clamp(16px,2.5vw,21px);color:rgba(255,255,255,0.85); /* ← 설명 문구 크기 */
+  line-height:1.7;max-width:480px;margin-bottom:8px; /* ← [수정] 타이틀 위 위치이므로 여백 축소 — 기존: 24px */
+  animation:fadeUp 0.7s 0.3s both;
+}
+.hero-btns{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  position:relative;z-index:3;margin-top:0; /* ← [수정] 텍스트 바로 아래 위치 — 기존: margin-top:24px */
+  animation:fadeUp 0.7s 0.6s both;
+}
+/* [텍스트 크기] 앱 다운로드 버튼 */
+.btn-store{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:14px 28px;border-radius:16px;font-size:14px;font-weight:700; /* ← 버튼 텍스트 크기 */
+  text-decoration:none;transition:all 0.3s;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;
+}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 3px 0 var(--gold-dark)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,201,0,0.35)}
+.btn-sky{background:var(--sky);color:#fff;box-shadow:0 3px 0 var(--sky-dark)}
+.btn-sky:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,188,255,0.35)}
+.btn-store .store-text{text-align:left}
+.btn-store .store-text small{display:block;font-size:10px;opacity:0.7;font-weight:400} /* ← 버튼 상단 작은 글씨 크기 */
+.btn-store .store-text strong{display:block;font-size:14px} /* ← 버튼 하단 스토어명 크기 */
+
+.hero-stats{
+  display:flex;gap:40px;margin-top:28px;
+  position:relative;z-index:3;
+  animation:fadeUp 0.7s 0.7s both;
+}
+.hero-stat{text-align:center}
+/* [텍스트 크기] 히어로 통계 숫자 및 라벨 */
+.hero-stat .num{font-family:'Gamja Flower',cursive;font-size:28px;font-weight:700;color:var(--ink)} /* ← 통계 숫자 크기 */
+.hero-stat .label{font-size:12px;color:var(--ink-60);margin-top:2px} /* ← 통계 라벨 크기 */
+
+/* [텍스트 크기] 스크롤 힌트 */
+.scroll-hint{
+  position:relative;margin-top:44px;z-index:3;
+  font-family:'Gamja Flower',cursive;font-size:20px;color:var(--ink-60); /* ← 스크롤 힌트 크기 */
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:bounce 2.5s infinite;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── STORY PAGES REVERSED (텍스트 왼쪽, 비주얼 오른쪽) ── */
+.story-grid-r{
+  max-width:1100px;width:100%;margin:0 auto;
+  display:grid;grid-template-columns:340px 340px;gap:48px;align-items:center;justify-content:center;
+}
+.story-text-r{
+  max-width:340px;width:100%;
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+.story-text-r .chapter{
+  font-family:'Nunito',sans-serif;font-size:clamp(14px,1.5vw,18px);
+  letter-spacing:0.08em;margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;font-weight:700;
+}
+.story-text-r .chapter::before{
+  content:none;
+}
+.story-text-r h2{
+  font-family:'Gamja Flower',cursive;
+  font-size:clamp(24px,3.8vw,40px);line-height:1.12;margin-bottom:18px;
+}
+.story-text-r p{
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:500;line-height:1.9;
+  color:var(--ink-60);
+}
+.story-text-r .tags{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.story-text-r .tag{
+  padding:6px 16px;border-radius:100px;font-family:'Gamja Flower',cursive;
+  font-size:14px;border:1.5px dashed;font-weight:700;
+}
+.story-visual-r{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:340px;height:340px;flex-shrink:0;
+}
+.story-visual-r .circle-bg{
+  position:absolute;width:340px;height:340px;border-radius:50%;
+  animation:breathe 6s ease-in-out infinite;
+}
+.story-visual-r .main-img{
+  position:relative;z-index:2;max-height:220px;width:auto;
+  filter:drop-shadow(0 12px 36px rgba(0,0,0,0.12));
+  animation:storyFloat 5s ease-in-out infinite;
+}
+.story-visual-r .orbit-ring{
+  position:absolute;width:320px;height:320px;border-radius:50%;
+  border:1.5px dashed;opacity:0.6;
+  animation:spinSlow 22s linear infinite;
+}
+.story-visual-r .orbit-dot{
+  position:absolute;width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+
+.page-story{padding:80px 40px}
+.story-grid{
+  max-width:1100px;width:100%;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+}
+.story-visual{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  min-height:360px;
+}
+.story-visual .circle-bg{
+  position:absolute;width:340px;height:340px;border-radius:50%;
+  animation:breathe 6s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{transform:scale(1);border-radius:50%}50%{transform:scale(1.04);border-radius:46% 54% 50% 50%}}
+
+.story-visual .main-img{
+  position:relative;z-index:2;max-height:220px;width:auto;
+  filter:drop-shadow(0 12px 36px rgba(0,0,0,0.12));
+  animation:storyFloat 5s ease-in-out infinite;
+}
+@keyframes storyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.story-visual .orbit-ring{
+  position:absolute;width:320px;height:320px;border-radius:50%;
+  border:1.5px dashed;opacity:0.6;
+  animation:spinSlow 22s linear infinite;
+}
+.story-visual .orbit-dot{
+  position:absolute;width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* [텍스트 크기] 챕터 라벨 (제1장, 제2장 등) */
+.story-text .chapter{
+  font-family:'Nunito',sans-serif;font-size:clamp(14px,1.5vw,18px); /* ← 챕터 라벨 크기 */
+  letter-spacing:0.08em;margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;font-weight:700;
+}
+.story-text .chapter::before{
+  content:none;
+}
+/* [텍스트 크기] 챕터 제목 */
+.story-text h2{
+  font-family:'Gamja Flower',cursive;
+  font-size:clamp(24px,3.8vw,40px);line-height:1.12;margin-bottom:18px; /* ← 챕터 제목 크기 */
+}
+/* [텍스트 크기] 챕터 본문 설명 */
+.story-text p{
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:500;line-height:1.9; /* ← 챕터 본문 크기 */
+  color:var(--ink-60);max-width:400px;
+}
+.story-text .tags{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+/* [텍스트 크기] 챕터 태그 */
+.story-text .tag{
+  padding:6px 16px;border-radius:100px;font-family:'Gamja Flower',cursive;
+  font-size:14px;border:1.5px dashed;font-weight:700; /* ← 태그 텍스트 크기 */
+}
+
+/* ── Page color themes ── */
+.page-plant{background:linear-gradient(150deg,var(--bg),#E8FFF0,var(--bg))}
+.page-plant .circle-bg{background:var(--mint-dim)}
+.page-plant .orbit-ring{border-color:var(--mint)}
+.page-plant .chapter{color:var(--mint)}.page-plant .chapter::before{background:var(--mint)}
+.page-plant .tag{border-color:var(--mint-light);color:var(--mint)}
+.page-plant .orbit-dot{background:var(--mint-light)}
+
+.page-potion{background:linear-gradient(150deg,var(--bg),#F0E4FF,var(--bg))}
+.page-potion .circle-bg{background:var(--violet-dim)}
+.page-potion .orbit-ring{border-color:var(--violet)}
+.page-potion .chapter{color:var(--violet)}.page-potion .chapter::before{background:var(--violet)}
+.page-potion .tag{border-color:var(--violet-light);color:var(--violet)}
+.page-potion .orbit-dot{background:var(--violet-light)}
+.page-potion .story-grid-r{gap:48px}
+.page-potion .story-visual-r .circle-bg{background:var(--violet-dim)}
+.page-potion .story-visual-r .orbit-ring{border-color:var(--violet)}
+.page-potion .story-visual-r .orbit-dot{background:var(--violet-light)}
+.page-potion .story-text-r .chapter{color:var(--violet)}
+.page-potion .story-text-r .chapter::before{background:var(--violet)}
+.page-potion .story-text-r .tag{border-color:var(--violet-light);color:var(--violet)}
+.page-potion .story-grid{gap:72px}
+.page-potion .story-text p{max-width:unset}
+
+
+
+.page-library{background:linear-gradient(150deg,var(--bg),#FFF3D6,var(--bg))}
+.page-library .circle-bg{background:var(--gold-dim)}
+.page-library .orbit-ring{border-color:var(--gold)}
+.page-library .chapter{color:var(--gold-dark)}.page-library .chapter::before{background:var(--gold)}
+.page-library .tag{border-color:var(--gold-light);color:var(--gold-dark)}
+.page-library .orbit-dot{background:var(--gold-light)}
+
+.page-badge{background:linear-gradient(150deg,var(--bg),#FFE4EA,var(--bg))}
+.page-badge .circle-bg{background:var(--coral-dim)}
+.page-badge .orbit-ring{border-color:var(--coral)}
+.page-badge .chapter{color:var(--coral)}.page-badge .chapter::before{background:var(--coral)}
+.page-badge .tag{border-color:var(--coral-light);color:var(--coral)}
+.page-badge .orbit-dot{background:var(--coral-light)}
+.page-badge .story-grid-r{gap:48px}
+.page-badge .story-visual-r .circle-bg{background:var(--coral-dim)}
+.page-badge .story-visual-r .orbit-ring{border-color:var(--coral)}
+.page-badge .story-visual-r .orbit-dot{background:var(--coral-light)}
+.page-badge .story-text-r .chapter{color:var(--coral)}
+.page-badge .story-text-r .chapter::before{background:var(--coral)}
+.page-badge .story-text-r .tag{border-color:var(--coral-light);color:var(--coral)}
+.page-badge .story-grid{gap:72px}
+.page-badge .story-text p{max-width:unset}
+
+/* ══════════════════════════════════════════
+   습관 마법사 전용 스타일
+══════════════════════════════════════════ */
+
+.page-wizard{  background:linear-gradient(150deg,var(--bg),#EDE4FF,var(--bg));}
+.page-wizard .circle-bg{  background:radial-gradient(circle, rgba(183,160,232,0.2) 0%, rgba(107,143,212,0.1) 100%);}
+.page-wizard .orbit-ring{  border-color:var(--wizard-purple);  opacity:0.55;}
+.page-wizard .orbit-dot{  background:var(--violet-light);}
+.page-wizard .chapter{  color:var(--violet);}
+.page-wizard .tag{  border-color:var(--violet-light);  color:var(--violet);}
+.page-wizard .main-img{  max-height:220px;  filter:drop-shadow(0 16px 48px rgba(124,92,252,0.25));}
+.page-wizard .story-grid-r{gap:48px}
+.page-wizard .story-visual-r .circle-bg{background:var(--coral-dim)}
+.page-wizard .story-visual-r .orbit-ring{border-color:var(--coral)}
+.page-wizard .story-visual-r .orbit-dot{background:var(--coral-light)}
+.page-wizard .story-text-r .chapter{color:var(--coral)}
+.page-wizard .story-text-r .chapter::before{background:var(--coral)}
+.page-wizard .story-text-r .tag{border-color:var(--coral-light);color:var(--coral)}
+.page-wizard .story-grid{gap:72px}
+.page-wizard .story-text p{max-width:unset}
+/* ══ 마법사 주변 마법 파티클 ══ */
+.magic-particle{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:1;
+}
+/* 별 파티클들 */
+.star-particle{
+  position:absolute;
+  pointer-events:none;
+  z-index:1;
+  font-size:18px;
+  opacity:0;
+}
+/* 각 별의 개별 애니메이션 */
+@keyframes starFloat1{
+  0%{opacity:0;transform:translate(0,0) scale(0.5) rotate(0deg)}
+  20%{opacity:1}
+  80%{opacity:0.8}
+  100%{opacity:0;transform:translate(-30px,-60px) scale(1.2) rotate(60deg)}
+}
+@keyframes starFloat2{
+  0%{opacity:0;transform:translate(0,0) scale(0.5) rotate(0deg)}
+  20%{opacity:1}
+  80%{opacity:0.8}
+  100%{opacity:0;transform:translate(40px,-55px) scale(1.1) rotate(-45deg)}
+}
+@keyframes starFloat3{
+  0%{opacity:0;transform:translate(0,0) scale(0.5)}
+  20%{opacity:0.9}
+  80%{opacity:0.7}
+  100%{opacity:0;transform:translate(-50px,-40px) scale(1.3) rotate(90deg)}
+}
+@keyframes starFloat4{
+  0%{opacity:0;transform:translate(0,0) scale(0.6)}
+  20%{opacity:1}
+  80%{opacity:0.6}
+  100%{opacity:0;transform:translate(60px,-45px) scale(0.9) rotate(-80deg)}
+}
+@keyframes starFloat5{
+  0%{opacity:0;transform:translate(0,0) scale(0.4)}
+  20%{opacity:0.8}
+  80%{opacity:0.5}
+  100%{opacity:0;transform:translate(20px,-70px) scale(1.1) rotate(120deg)}
+}
+@keyframes starFloat6{
+  0%{opacity:0;transform:translate(0,0) scale(0.5)}
+  20%{opacity:0.9}
+  80%{opacity:0.7}
+  100%{opacity:0;transform:translate(-65px,-30px) scale(1.2) rotate(-60deg)}
+}
+
+/* 마법봉 글로우 */
+@keyframes wandGlow{
+  0%,100%{filter:drop-shadow(0 16px 48px rgba(124,92,252,0.25)) drop-shadow(0 0 0px rgba(255,201,0,0))}
+  50%{filter:drop-shadow(0 16px 48px rgba(124,92,252,0.4)) drop-shadow(0 0 20px rgba(255,201,0,0.3))}
+}
+
+/* 캐릭터 마법 애니메이션 (기본 float + 글로우 조합) */
+.page-wizard .main-img{
+  animation:wizardFloat 5s ease-in-out infinite, wandGlow 3s ease-in-out infinite;
+}
+@keyframes wizardFloat{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(-14px) rotate(1.5deg)}
+}
+
+/* ── orbit-dot 개별 애니메이션 ── */
+.orbit-dot-glow{
+  animation:dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse{
+  0%,100%{box-shadow:0 2px 8px rgba(0,0,0,0.08), 0 0 0px rgba(124,92,252,0)}
+  50%{box-shadow:0 2px 8px rgba(0,0,0,0.08), 0 0 12px rgba(124,92,252,0.4)}
+}
+
+/* ── 마법진 링 (추가 장식 링) ── */
+.magic-ring{
+  position:absolute;
+  border-radius:50%;
+  border:1px dashed;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ══ 마법 파티클 고정 위치들 (orbit-ring 주변) ══ */
+.sp1{top:60px;left:50%;margin-left:20px;animation:starFloat1 3.5s ease-in-out 0s infinite}
+.sp2{top:80px;left:50%;margin-left:-60px;animation:starFloat2 4s ease-in-out 0.6s infinite}
+.sp3{top:50%;left:10px;margin-top:-20px;animation:starFloat3 4.5s ease-in-out 1.2s infinite}
+.sp4{top:50%;right:10px;margin-top:-30px;animation:starFloat4 3.8s ease-in-out 0.3s infinite}
+.sp5{bottom:80px;left:50%;margin-left:30px;animation:starFloat5 4.2s ease-in-out 0.9s infinite}
+.sp6{bottom:90px;left:50%;margin-left:-70px;animation:starFloat6 3.6s ease-in-out 1.5s infinite}
+.sp7{top:30px;left:50%;margin-left:-100px;animation:starFloat1 5s ease-in-out 2s infinite; font-size:12px;}
+.sp8{top:40px;left:50%;margin-left:80px;animation:starFloat2 4.8s ease-in-out 0.4s infinite; font-size:14px;}
+
+/* ══ MBTI 카드 플로팅 (orbit 주변 미니 카드들) ══ */
+.mbti-float-card{
+  position:absolute;
+  background:var(--white);
+  border:1.5px solid var(--violet-light);
+  border-radius:12px;
+  padding:6px 12px;
+  font-family:'Gamja Flower',cursive;
+  font-size:13px;
+  color:var(--violet);
+  white-space:nowrap;
+  box-shadow:0 4px 12px rgba(124,92,252,0.12);
+  z-index:3;
+  opacity:0;
+}
+.mbti-float-card.show{
+  animation:mbtiAppear 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes mbtiAppear{
+  from{opacity:0;transform:translateY(8px) scale(0.92)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+/* 카드들이 살짝 흔들리는 상시 애니메이션 */
+.mbti-card-1{
+  top: 30px; right: -20px;
+  animation: mbtiFloat1 4s ease-in-out 0.5s infinite !important;
+  opacity:1;
+}
+.mbti-card-2{
+  bottom: 60px; left: -20px;
+  animation: mbtiFloat2 4.5s ease-in-out 1s infinite !important;
+  opacity:1;
+}
+.mbti-card-3{
+  bottom: 30px; right: -10px;
+  animation: mbtiFloat3 5s ease-in-out 1.8s infinite !important;
+  opacity:1;
+}
+@keyframes mbtiFloat1{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-8px) rotate(1deg)}
+}
+@keyframes mbtiFloat2{
+  0%,100%{transform:translateY(0) rotate(1.5deg)}
+  50%{transform:translateY(-6px) rotate(-2deg)}
+}
+@keyframes mbtiFloat3{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(-10px) rotate(2deg)}
+}
+
+/* ══ 마법사 전용 추가 장식: 별빛 배경 파티클 ══ */
+.wizard-bg-stars{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;
+}
+.bg-star{
+  position:absolute;
+  width:4px;height:4px;border-radius:50%;
+  background:var(--wizard-purple);
+  animation:bgStarTwinkle var(--dur, 3s) ease-in-out var(--delay, 0s) infinite;
+}
+@keyframes bgStarTwinkle{
+  0%,100%{opacity:0.1;transform:scale(1)}
+  50%{opacity:0.5;transform:scale(1.8)}
+}
+
+
+
+/* ── STATS PAGE ── */
+.page-stats{flex-direction:column;background:var(--ink);color:var(--bg)}
+/* [텍스트 크기] 통계 페이지 제목 */
+.page-stats h2{
+  font-family:'Gamja Flower',cursive;font-size:clamp(28px,5vw,44px); /* ← 통계 섹션 제목 크기 */
+  text-align:center;margin-bottom:56px;
+}
+.page-stats h2 .c-gold{color:var(--gold)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;width:100%}
+.stat-card{
+  text-align:center;padding:32px 20px;border-radius:24px;
+  border:1.5px dashed rgba(255,253,245,0.1);
+  background:rgba(255,253,245,0.03);
+  transition:all 0.3s;
+}
+.stat-card:hover{border-color:rgba(255,253,245,0.2);transform:translateY(-4px)}
+.stat-card .num{font-family:'Gamja Flower',cursive;font-size:48px;margin-bottom:6px} /* ← 통계 숫자 크기 */
+.stat-card .label{font-size:13px;opacity:0.45} /* ← 통계 라벨 크기 */
+
+/* ── REVIEWS PAGE ── */
+.page-reviews{flex-direction:column;background:var(--bg-warm)}
+/* [텍스트 크기] 리뷰 페이지 제목 */
+.page-reviews h2{
+  font-family:'Gamja Flower',cursive;font-size:clamp(28px,5vw,44px); /* ← 리뷰 섹션 제목 크기 */
+  text-align:center;margin-bottom:48px;
+}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;width:100%}
+.rcard{
+  background:var(--white);border-radius:24px;padding:28px;
+  border:1.5px solid var(--ink-10);
+  box-shadow:0 4px 0 var(--ink-10);
+  transition:all 0.3s;
+}
+.rcard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.rcard-stars{font-size:14px;letter-spacing:2px;margin-bottom:14px} /* ← 리뷰 별점 크기 */
+.rcard-text{
+  font-family:'Nunito',sans-serif;font-size:16px;font-weight:500; /* ← 리뷰 본문 크기 */
+  line-height:1.8;color:var(--ink-60);margin-bottom:18px;
+}
+/* [텍스트 크기] 리뷰 작성자 이름 */
+.rcard-who{
+  font-family:'Gamja Flower',cursive;font-size:16px; /* ← 리뷰 작성자 크기 */
+  color:var(--ink-30);display:flex;align-items:center;gap:10px;
+}
+.rcard-who .avatar{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+}
+
+/* ── FAQ PAGE ── */
+.page-faq{flex-direction:column;background:var(--bg)}
+/* [텍스트 크기] FAQ 페이지 제목 */
+.page-faq h2{
+  font-family:'Gamja Flower',cursive;font-size:clamp(28px,5vw,44px); /* ← FAQ 섹션 제목 크기 */
+  text-align:center;margin-bottom:48px;
+}
+.faq-wrap{max-width:640px;width:100%}
+.faq-item{margin-bottom:12px}
+.faq-q{
+  width:100%;background:var(--white);border:1.5px solid var(--ink-10);
+  border-radius:16px;padding:18px 24px;cursor:pointer;
+  font-family:'Gamja Flower',cursive;font-size:19px;color:var(--ink); /* ← FAQ 질문 텍스트 크기 */
+  text-align:left;display:flex;justify-content:space-between;align-items:center;
+  box-shadow:0 2px 0 var(--ink-10);transition:all 0.3s;
+}
+.faq-item.open .faq-q{border-color:var(--sky);box-shadow:0 2px 0 var(--sky-light)}
+.faq-q .ico{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--bg-warm);display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink-30);transition:all 0.3s;flex-shrink:0;
+}
+.faq-item.open .ico{background:var(--sky);color:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.16,1,0.3,1)}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a p{
+  padding:14px 24px 4px;font-family:'Nunito',sans-serif;font-weight:500;
+  font-size:15px;color:var(--ink-60);line-height:1.8; /* ← FAQ 답변 텍스트 크기 */
+}
+
+/* ── FINAL PAGE ── */
+.page-final{
+  flex-direction:column;text-align:center;
+  background:var(--gold);
+  position:relative;overflow:hidden;
+}
+#confetti-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:1;
+}
+.page-final .character{
+  width:180px;margin-bottom:24px;
+  filter:drop-shadow(0 12px 32px rgba(0,0,0,0.1));
+  animation:storyFloat 3.5s ease-in-out infinite;
+  position:relative;z-index:2;
+}
+/* [텍스트 크기] 최종 CTA 타이틀 */
+.page-final h2{
+  font-family:'Gamja Flower',cursive;
+  font-size:clamp(24px,3.8vw,40px);line-height:1.12;margin-bottom:32px; /* ← 다른 페이지 h2와 동일 */
+  color:var(--ink);
+  position:relative;z-index:2;
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.page-final.in-view h2{opacity:1;transform:translateY(0)}
+.page-final h2 .c-gold{color:var(--gold-dark)}
+.page-final h2 .c-sky{color:var(--sky)}
+.final-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+
+/* ── FOOTER (inside page-final) ── */
+.final-footer{
+  margin-top:32px;text-align:center;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;
+  color:rgba(36,30,20,0.45);
+  position:relative;z-index:2;
+}
+.final-footer a{color:rgba(36,30,20,0.6);text-decoration:none;margin:0 6px}
+.final-footer a:hover{color:var(--ink)}
+.final-footer .social-row{margin-top:12px}
+.final-footer .social-row a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.5);border:1px solid rgba(36,30,20,0.12);
+  margin:0 4px;transition:all 0.3s;font-size:16px;
+}
+.final-footer .social-row a:hover{background:rgba(255,255,255,0.8);transform:translateY(-2px)}
+
+
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .nav{padding:12px 20px}
+  .nav-links{display:none}
+  .hamburger{display:block}
+  .mobile-drawer{display:flex}
+  /* story-grid (page2,4) */
+  .story-grid{grid-template-columns:1fr;text-align:center;gap:40px}
+  .story-visual{min-height:280px}
+  .story-visual .circle-bg{width:260px;height:260px}
+  .story-visual .orbit-ring{width:240px;height:240px}
+  .story-visual .main-img{max-height:200px}
+  .story-text{align-items:center}
+  .story-text .chapter{justify-content:center}
+  .story-text p{margin:0 auto}
+  .story-text .tags{justify-content:center}
+  /* story-grid-r (page3,5) */
+  .story-grid-r{grid-template-columns:1fr;gap:40px;justify-content:start}
+  .story-text-r{max-width:100%;width:100%;align-items:center;text-align:center}
+  .story-text-r .chapter{justify-content:center}
+  .story-text-r .tags{justify-content:center}
+  .story-visual-r{width:100%;height:280px}
+  .story-visual-r .circle-bg{width:260px;height:260px}
+  .story-visual-r .orbit-ring{width:240px;height:240px}
+  .story-visual-r .main-img{max-height:200px}
+  /* other */
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+  .page{padding:80px 20px}
+}
+@media(max-width:640px){
+  .hero-character{width:96px;margin-top:-24px} /* ← [캐릭터 위치/크기] 모바일 캐릭터 크기 및 위치 */
+  .page-hero h1{font-size:clamp(26px,8vw,48px)} /* ← [수정] [텍스트 크기] 모바일 메인 타이틀 크기 20% 축소 — 기존: clamp(32px,10vw,60px) */
+  .hero-btns{flex-direction:column;align-items:center;width:100%}
+  .btn-store{width:100%;max-width:280px;justify-content:center}
+  .final-btns{flex-direction:column;align-items:center;width:100%}
+  .final-btns .btn-store{width:100%;max-width:280px}
+  /* story-grid (page2,4) */
+  .story-visual .circle-bg{width:220px;height:220px}
+  .story-visual .orbit-ring{width:200px;height:200px}
+  .story-visual .main-img{max-height:160px}
+  /* story-grid-r (page3,5) */
+  .story-visual-r{height:240px}
+  .story-visual-r .circle-bg{width:220px;height:220px}
+  .story-visual-r .orbit-ring{width:200px;height:200px}
+  .story-visual-r .main-img{max-height:160px}
+  /* other */
+  .stats-grid{gap:12px}
+  .stat-card{padding:24px 12px}
+  .stat-card .num{font-size:36px} /* ← [텍스트 크기] 모바일 통계 숫자 크기 */
+  .hero-stats{flex-wrap:wrap;justify-content:center}
+}
+
+/* ═══ Page transition animations ═══ */
+.page-story .story-grid,
+.page-story .story-grid-r{
+  opacity:0;transform:translateY(40px);
+  transition:all 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.page-story.in-view .story-grid,
+.page-story.in-view .story-grid-r{opacity:1;transform:translateY(0)}
+
+.page-stats .stats-grid .stat-card{
+  opacity:0;transform:translateY(24px);
+  transition:all 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.page-stats.in-view .stat-card:nth-child(1){opacity:1;transform:translateY(0);transition-delay:0s}
+.page-stats.in-view .stat-card:nth-child(2){opacity:1;transform:translateY(0);transition-delay:0.1s}
+.page-stats.in-view .stat-card:nth-child(3){opacity:1;transform:translateY(0);transition-delay:0.2s}
+.page-stats.in-view .stat-card:nth-child(4){opacity:1;transform:translateY(0);transition-delay:0.3s}
+
+.page-reviews .rcard{
+  opacity:0;transform:translateY(24px);
+  transition:all 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.page-reviews.in-view .rcard:nth-child(1){opacity:1;transform:translateY(0);transition-delay:0s}
+.page-reviews.in-view .rcard:nth-child(2){opacity:1;transform:translateY(0);transition-delay:0.12s}
+.page-reviews.in-view .rcard:nth-child(3){opacity:1;transform:translateY(0);transition-delay:0.24s}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo-wrap">
+      <img class="nav-logo" src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67276e37308f1e1139aeac11_haboa_logo_48px.png" alt="해보아">
+    </a>
+    <div class="nav-links">
+      <a href="#plant">해보아탐험</a>
+      <a href="#reviews">후기</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://www.instagram.com/haboa.life" target="_blank" rel="noopener" class="nav-insta" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+    </div>
+    <button class="hamburger" id="menuBtn" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="drawer">
+  <button class="close-btn" id="closeBtn">✕</button>
+  <a href="#plant" class="drawer-link">해보아탐험</a>
+  <a href="#reviews" class="drawer-link">후기</a>
+  <a href="#faq" class="drawer-link">FAQ</a>
+  <a href="https://www.instagram.com/haboa.life" target="_blank" rel="noopener" class="drawer-link drawer-insta">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:8px"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>Instagram
+  </a>
+</div>
+
+<!-- ═══ PAGE 1: HERO ═══ -->
+<section class="page page-hero" id="hero">
+  <div class="deco-ring"></div>
+  <div class="deco-ring"></div>
+
+  <!-- 1) Text + buttons at top -->
+  <div class="hero-inner">
+    <!-- [수정] hero-sub를 타이틀 위로 이동 — 기존: h1 아래 위치 -->
+    <p class="hero-sub">습관 사막에서 지친 당신에게</p>
+    <h1>습관 오아시스,<br><span class="c-gold">해보아</span></h1>
+    <!-- [수정] 다운로드 버튼을 히어로 텍스트 바로 아래로 이동 — 기존: 배경이미지+캐릭터 아래 위치 -->
+    <div class="hero-btns">
+      <a href="#" class="btn-store btn-gold">
+        <span>▶</span>
+        <span class="store-text"><small>GET IT ON</small><strong>Google Play</strong></span>
+      </a>
+      <a href="#" class="btn-store btn-sky">
+        <span>🍎</span>
+        <span class="store-text"><small>Download on the</small><strong>App Store</strong></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 2) Background image -->
+  <div class="bg-img">
+    <img src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67276f9acb3ef1db5d01cfd5_main_bg_full3_2048_512.png" alt="사막 배경">
+  </div>
+
+  <!-- 3) Character on top of bg image -->
+  <img class="hero-character" src="https://cdn.prod.website-files.com/672736dca219f17588e44452/6727804daca8c9d3702d7cf1_PocoKeen1.png" alt="해보아 캐릭터">
+
+  <!-- 4) Scroll hint -->
+  <div class="scroll-hint">아래로 스크롤 ↓</div>
+</section>
+
+<!-- ═══ PAGE 2: 습관 식물 ═══ -->
+<section class="page page-story page-plant" id="plant">
+  <div class="story-grid">
+    <div class="story-visual">
+      <div class="circle-bg"></div>
+      <div class="orbit-ring" style="border-color:var(--mint-light)">
+        <div class="orbit-dot" style="top:-18px;left:50%;margin-left:-18px;background:var(--mint-light)">💧</div>
+        <div class="orbit-dot" style="top:50%;right:-18px;margin-top:-18px;background:var(--gold-light)">☀️</div>
+        <div class="orbit-dot" style="bottom:-18px;left:50%;margin-left:-18px;background:var(--coral-light)">🌸</div>
+      </div>
+      <img class="main-img" src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67394e96f0694f8a0b21f43a_Pot001_Plant_B_001.png" alt="습관 식물">
+    </div>
+    <div class="story-text">
+      <div class="chapter">습관식물</div>
+      <h2>나만의<br>습관 식물을<br>키워보세요</h2>
+      <p>당신과 잘 맞는 습관을 만나고 싶나요?<br><strong>엄선된 습관 식물을 키워보세요.</strong><br>습관 식물이 성장할수록 당신도 같이 성장할 거에요.</p>
+      <div class="tags">
+        <span class="tag">성장 시스템</span>
+        <span class="tag">50+ 식물</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE 3: 습관 묘약 ═══ -->
+<section class="page page-story page-potion">
+  <div class="story-grid-r">
+    <div class="story-text-r">
+      <div class="chapter">습관묘약</div>
+      <h2>묘약으로<br>습관 효율을<br>끌어올리세요</h2>
+      <p>꾸준히 하고 싶은 습관이 있나요?<br>혹은 더 잘하기 위한 자극이 필요한가요?<br><strong>습관 묘약으로 습관 효율을 올려보세요.</strong></p>
+      <div class="tags">
+        <span class="tag">부스트 시스템</span>
+        <span class="tag">12종 묘약</span>
+      </div>
+    </div>
+    <div class="story-visual-r">
+      <div class="circle-bg"></div>
+      <div class="orbit-ring" style="border-color:var(--violet-light);animation-direction:reverse">
+        <div class="orbit-dot" style="top:-18px;left:50%;margin-left:-18px;background:var(--violet-light)">✨</div>
+        <div class="orbit-dot" style="top:50%;right:-18px;margin-top:-18px;background:var(--sky-light)">⚡</div>
+        <div class="orbit-dot" style="bottom:-18px;left:50%;margin-left:-18px;background:var(--gold-light)">💫</div>
+      </div>
+      <img class="main-img" src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67a31182020a63fbed6261ec_Potion_001.png" alt="습관 묘약">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE 4: 습관 서재 ═══ -->
+<section class="page page-story page-library">
+  <div class="story-grid">
+    <div class="story-visual">
+      <div class="circle-bg"></div>
+      <div class="orbit-ring" style="border-color:var(--gold-light);animation-duration:28s">
+        <div class="orbit-dot" style="top:-18px;left:50%;margin-left:-18px;background:var(--gold-light)">📖</div>
+        <div class="orbit-dot" style="top:50%;right:-18px;margin-top:-18px;background:var(--coral-light)">💡</div>
+        <div class="orbit-dot" style="bottom:-18px;left:50%;margin-left:-18px;background:var(--sky-light)">🔖</div>
+      </div>
+      <img class="main-img" src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67a43f02c48dea44a9e5eb5e_bookshelf_001.png" alt="습관 서재">
+    </div>
+    <div class="story-text">
+      <div class="chapter">습관서재</div>
+      <h2>몰랐던<br>습관 비법을<br>알아가세요</h2>
+      <p>아하 이렇게 해야 더 좋구나!<br>이게 이런 효과가 있는 줄?<br><strong>습관 서재에서 몰랐던 습관 비법을 알아가세요.</strong></p>
+      <div class="tags">
+        <span class="tag">콘텐츠 허브</span>
+        <span class="tag">매주 업데이트</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE 5: 습관 마법사 ═══ -->
+<section class="page page-story page-wizard">
+  <div class="story-grid-r">
+    <div class="story-text-r">
+      <div class="chapter">습관마법사</div>
+      <h2>뭐가 나랑 맞을까?<br>나와 딱 맞는 습관을<br>마법처럼 찾아보세요</h2>
+      <p>
+        어떤 습관이 나와 잘 맞는지 모르겠나요?<br>
+        <strong>MBTI와 체력 상태를 알려주세요.</strong><br>
+        마법사가 나만을 위한 습관 식물과<br>묘약을 정확히 추천해 드려요.
+      </p>
+      <div class="tags">
+        <span class="tag">MBTI 분석</span>
+        <span class="tag">맞춤 추천</span>
+        <span class="tag">16가지 유형</span>
+      </div>
+    </div>
+    <div class="story-visual-r">
+      <div class="circle-bg"></div>
+      <div class="orbit-ring" style="border-color:var(--violet-light);animation-direction:reverse">
+        <div class="orbit-dot" style="top:-18px;left:50%;margin-left:-18px;background:var(--coral-light)">⭐</div>
+        <div class="orbit-dot" style="top:50%;right:-18px;margin-top:-18px;background:var(--gold-light)">🔮</div>
+        <div class="orbit-dot" style="bottom:-18px;left:50%;margin-left:-18px;background:var(--violet-light)">📖</div>
+      </div>
+      <!-- 별 파티클들 -->
+      <span class="star-particle sp1" style="color:var(--wizard-gold)">★</span>
+      <span class="star-particle sp2" style="color:var(--wizard-blue)">✦</span>
+      <span class="star-particle sp3" style="color:var(--wizard-gold)">⭐</span>
+      <span class="star-particle sp4" style="color:var(--wizard-purple)">✧</span>
+      <span class="star-particle sp5" style="color:var(--wizard-gold)">★</span>
+      <span class="star-particle sp6" style="color:var(--wizard-blue)">✦</span>
+      <span class="star-particle sp7" style="color:var(--wizard-purple)">✦</span>
+      <span class="star-particle sp8" style="color:var(--wizard-gold)">★</span>
+      <img class="main-img" src="https://uwelatztgvoiyghuxlwo.supabase.co/storage/v1/object/public/image_src_new/backup/magician_001.png" alt="습관 마법사">
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══ PAGE 6: 업적 뱃지 ═══ -->
+<section class="page page-story page-badge">
+  <div class="story-grid-r">
+    <div class="story-text-r">
+      <div class="chapter">업적뱃지</div>
+      <h2>뱃지를 모아<br>성취감을<br>느껴보세요</h2>
+      <p>습관이 더해갈수록 늘어나는<br>습관 업적 뱃지를 즐겁게 모아보세요.<br>모으는 재미에 습관이 더 단단해져요.</p>
+      <div class="tags">
+        <span class="tag">보상 시스템</span>
+        <span class="tag">30+ 뱃지</span>
+      </div>
+    </div>
+    <div class="story-visual-r">
+      <div class="circle-bg"></div>
+      <div class="orbit-ring" style="border-color:var(--coral-light);animation-direction:reverse;animation-duration:18s">
+        <div class="orbit-dot" style="top:-18px;left:50%;margin-left:-18px;background:var(--coral-light)">⭐</div>
+        <div class="orbit-dot" style="top:50%;right:-18px;margin-top:-18px;background:var(--gold-light)">🎖️</div>
+        <div class="orbit-dot" style="bottom:-18px;left:50%;margin-left:-18px;background:var(--violet-light)">🥇</div>
+      </div>
+      <div style="display:flex;gap:12px;position:relative;z-index:2;animation:storyFloat 5s ease-in-out infinite">
+        <img src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67a44628362654d823e1fdb7_5Consecutive.png" alt="뱃지" style="width:80px;height:80px;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.12))">
+        <img src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67a446284379fe108df6e80c_10ccPotionWizard.png" alt="뱃지" style="width:80px;height:80px;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.12))">
+        <img src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67a446285c76b564c8991f0d_FirstHabitPant.png" alt="뱃지" style="width:80px;height:80px;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.12))">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE 7: STATS ═══ -->
+<section class="page page-stats" id="stats">
+  <h2>해보아의 여정, <span class="c-gold">숫자</span>로 보면</h2>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num" style="color:var(--gold)">10K+</div><div class="label">누적 다운로드</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--sky)">4.8</div><div class="label">평균 평점</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--mint)">92%</div><div class="label">습관 유지율</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--coral)">30+</div><div class="label">업적 뱃지</div></div>
+  </div>
+</section>
+
+<!-- ═══ PAGE 8: REVIEWS ═══ -->
+<section class="page page-reviews" id="reviews">
+  <h2>함께한 분들의 이야기</h2>
+  <div class="reviews-grid">
+    <div class="rcard">
+      <div class="rcard-stars" style="color:var(--gold)">★★★★★</div>
+      <div class="rcard-text">식물 키우는 재미에 빠져서 어느새 운동 30일 달성! 이런 동기부여는 처음이에요.</div>
+      <div class="rcard-who"><div class="avatar" style="background:var(--mint-dim)">😊</div>김하늘 · 28세 · 운동 습관</div>
+    </div>
+    <div class="rcard">
+      <div class="rcard-stars" style="color:var(--gold)">★★★★★</div>
+      <div class="rcard-text">캐릭터가 너무 귀여워서 매일 앱을 열게 돼요. 묘약 시스템이 게임 같아서 좋아요!</div>
+      <div class="rcard-who"><div class="avatar" style="background:var(--violet-dim)">🥰</div>이수현 · 34세 · 독서 습관</div>
+    </div>
+    <div class="rcard">
+      <div class="rcard-stars" style="color:var(--gold)">★★★★☆</div>
+      <div class="rcard-text">서재에서 읽은 팁들이 진짜 도움이 됐어요. 하루 30분 독서가 일상이 됐습니다.</div>
+      <div class="rcard-who"><div class="avatar" style="background:var(--sky-dim)">📖</div>박지민 · 26세 · 독서 습관</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE 9: FAQ ═══ -->
+<section class="page page-faq" id="faq">
+  <h2>궁금한 점이 있나요?</h2>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">해보아는 무료인가요?<span class="ico">+</span></button>
+      <div class="faq-a"><p>핵심 기능은 모두 무료로 이용할 수 있어요. 프리미엄 습관 식물과 묘약은 인앱 구매로 제공됩니다.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">어떤 종류의 습관을 만들 수 있나요?<span class="ico">+</span></button>
+      <div class="faq-a"><p>운동, 독서, 물 마시기, 명상, 일기 쓰기 등 원하는 모든 습관을 자유롭게 만들 수 있어요. 엄선된 추천 습관도 준비되어 있습니다.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">습관 식물이 죽을 수도 있나요?<span class="ico">+</span></button>
+      <div class="faq-a"><p>걱정하지 마세요! 식물은 죽지 않아요. 다만 습관을 쉬면 성장이 멈추고, 다시 시작하면 이어서 자라납니다.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">iOS에서도 사용할 수 있나요?<span class="ico">+</span></button>
+      <div class="faq-a"><p>현재 Android 버전이 출시되어 있으며, iOS 버전은 곧 출시될 예정이에요. 사전 등록하시면 출시 알림을 보내드려요.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE 10: FINAL CTA ═══ -->
+<section class="page page-final" id="download">
+  <canvas id="confetti-canvas"></canvas>
+  <img class="character" src="https://cdn.prod.website-files.com/672736dca219f17588e44452/6727804daca8c9d3702d7cf1_PocoKeen1.png" alt="해보아 캐릭터">
+  <h2>당신의 목표가<br>이루어질 때까지,<br><span style="color:#fff">해보아!</span></h2>
+  <div class="final-footer">
+    <p>© 2025 해보아 · <a href="/privacy-policy">개인정보처리방침</a> · <a href="/terms-of-service">이용약관</a> · <a href="mailto:haboa@haboa.life">문의하기</a></p>
+  </div>
+</section>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// FAQ toggle
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── Mobile Drawer ──
+const drawer  = document.getElementById('drawer');
+const menuBtn = document.getElementById('menuBtn');
+const closeBtn = document.getElementById('closeBtn');
+
+function openDrawer() {
+  drawer.style.display = 'flex';
+}
+function closeDrawer() {
+  drawer.style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+menuBtn.addEventListener('click', openDrawer);
+closeBtn.addEventListener('click', closeDrawer);
+
+// 드로어 내 내부 링크 클릭 시 닫기
+document.querySelectorAll('.drawer-link').forEach(link => {
+  if (!link.getAttribute('target')) {
+    link.addEventListener('click', () => { drawer.style.display = 'none'; });
+  }
+});
+
+// PC 너비로 늘어나면 자동으로 드로어 닫기
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) {
+    drawer.style.display = 'none';
+  }
+});
+
+// Scroll-triggered page animations
+const pageObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('in-view');
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.page-story, .page-stats, .page-reviews').forEach(el => pageObs.observe(el));
+
+// Final page observer (text fade-in + confetti)
+const finalEl = document.querySelector('.page-final');
+let confettiStarted = false;
+const finalObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      if (!confettiStarted) { confettiStarted = true; startConfetti(); }
+    }
+  });
+}, { threshold: 0.3 });
+if (finalEl) finalObs.observe(finalEl);
+
+// ── Confetti (2초, 캐릭터 주변 집중) ──
+function startConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const colors = ['#FFC900','#1ABCFF','#FF6B8A','#7C5CFC','#2ED492','#fff'];
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+
+  // 캐릭터 중심 좌표 (화면 수직 40% 지점, 수평 중앙)
+  const cx = () => W / 2;
+  const cy = () => H * 0.38;
+  const spread = 160; // 캐릭터 주변 퍼짐 반경
+
+  function randomPiece() {
+    const angle = Math.random() * Math.PI * 2;
+    const dist  = Math.random() * spread;
+    return {
+      x: cx() + Math.cos(angle) * dist * 0.5,
+      y: cy() - Math.random() * 60,          // 캐릭터 위에서 시작
+      r: Math.random() * 5 + 3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 4,
+      vy: -(Math.random() * 4 + 2),          // 위로 튀어오른 뒤 중력으로 낙하
+      gravity: 0.15,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.22,
+      shape: Math.random() < 0.5 ? 'rect' : 'circle',
+      w: Math.random() * 9 + 5,
+      h: Math.random() * 5 + 3,
+      alpha: 1,
+    };
+  }
+
+  const DURATION = 2000; // 2초
+  const pieces = Array.from({length: 80}, randomPiece);
+  const startTime = performance.now();
+  let frame;
+
+  function draw(now) {
+    const elapsed = now - startTime;
+    const progress = elapsed / DURATION; // 0 → 1
+
+    ctx.clearRect(0, 0, W, H);
+    pieces.forEach(p => {
+      // 1초 이후 페이드 아웃
+      p.alpha = progress < 0.5 ? 1 : Math.max(0, 1 - (progress - 0.5) * 2);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha * 0.9;
+      if (p.shape === 'rect') {
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+      p.x += p.vx;
+      p.vy += p.gravity;
+      p.y += p.vy;
+      p.angle += p.spin;
+    });
+
+    if (elapsed < DURATION) {
+      frame = requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0, 0, W, H);
+    }
+  }
+  frame = requestAnimationFrame(draw);
+}
+
+/* ── 배경 별 파티클 생성 ── */
+(function(){
+  const container = document.getElementById('bgStars');
+  for(let i = 0; i < 24; i++){
+    const star = document.createElement('div');
+    star.className = 'bg-star';
+    const size = Math.random() * 4 + 2;
+    star.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --dur:${(Math.random()*3+2).toFixed(1)}s;
+      --delay:${(Math.random()*3).toFixed(1)}s;
+      background:${['var(--wizard-purple)','var(--wizard-gold)','var(--wizard-blue)','var(--violet-light)'][Math.floor(Math.random()*4)]};
+    `;
+    container.appendChild(star);
+  }
+})();
+
+</script>
+</body>
+</html>
