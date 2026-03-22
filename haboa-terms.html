@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서비스 이용약관 – 해보아</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:  #1abcff;
+  --primary2: #0099dd;
+  --accent:   #ffc900;
+  --night:    #0D1F3C;
+  --ink:      #1A2030;
+  --ink2:     #4A5568;
+  --bg:       #f5fbff;
+  --white:    #ffffff;
+  --radius:   1rem;
+  --pad-x:    clamp(1.25rem, 5vw, 4rem);
+  --max-w:    760px;
+
+  --fs-h1:   clamp(1.6rem, 4vw, 2.4rem);
+  --fs-h2:   clamp(1.05rem, 2.5vw, 1.3rem);
+  --fs-body: clamp(0.875rem, 1.4vw, 0.975rem);
+  --fs-sm:   clamp(0.75rem, 1.1vw, 0.825rem);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Noto Sans KR', sans-serif;
+  font-size:var(--fs-body);
+  color:var(--ink);
+  line-height:1.8;
+  overflow-x:hidden;
+}
+
+/* ── 배경 ── */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:-2;
+  background:linear-gradient(180deg, #1abcff 0%, #7dd8ff 18%, #fffce8 55%, #ffdf55 82%, #ffc900 100%);
+}
+
+/* ── HEADER ── */
+header {
+  position:sticky; top:0; z-index:100;
+  background:rgba(26,188,255,.18);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.38);
+  padding:14px var(--pad-x);
+  display:flex; align-items:center; gap:1rem;
+}
+.h-logo {
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  width:48px; height:48px; flex-shrink:0;
+}
+.h-logo::before {
+  content:''; position:absolute; inset:0;
+  border-radius:50%; background:#ffc900; opacity:.9; z-index:0;
+}
+.h-logo img { height:26px; position:relative; z-index:1; }
+.h-back {
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-size:var(--fs-sm); font-weight:600; color:var(--night);
+  background:rgba(255,255,255,.6); border:1.5px solid rgba(26,188,255,.25);
+  padding:.4rem .9rem; border-radius:50px;
+  text-decoration:none; transition:background .2s;
+  margin-left:auto;
+}
+.h-back:hover { background:rgba(255,255,255,.9); }
+
+/* ── MAIN CARD ── */
+main {
+  max-width:var(--max-w);
+  margin:2.5rem auto 4rem;
+  padding:0 var(--pad-x);
+}
+.card {
+  background:rgba(255,255,255,.93);
+  border-radius:1.5rem;
+  padding:clamp(1.75rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3rem);
+  box-shadow:0 8px 48px rgba(26,188,255,.1);
+}
+
+/* ── 페이지 타이틀 ── */
+.page-badge {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:rgba(26,188,255,.1); border:1.5px solid rgba(26,188,255,.25);
+  color:var(--primary2); border-radius:50px;
+  padding:.4rem 1rem; font-size:var(--fs-sm); font-weight:700;
+  letter-spacing:.5px; margin-bottom:1.1rem;
+}
+.page-badge .dot { width:7px;height:7px;border-radius:50%;background:var(--accent); }
+h1.page-title {
+  font-size:var(--fs-h1); font-weight:900;
+  line-height:1.2; letter-spacing:-.5px;
+  color:var(--night); margin-bottom:.5rem;
+}
+h1.page-title .hl { color:var(--primary2); }
+.page-meta {
+  font-size:var(--fs-sm); color:var(--ink2);
+  padding-bottom:1.75rem;
+  border-bottom:2px solid rgba(26,188,255,.12);
+  margin-bottom:2rem;
+}
+.page-meta span { font-weight:700; color:var(--night); }
+
+/* ── TOC ── */
+.toc {
+  background:rgba(26,188,255,.06);
+  border:1.5px solid rgba(26,188,255,.15);
+  border-radius:var(--radius);
+  padding:1.25rem 1.5rem;
+  margin-bottom:2.5rem;
+}
+.toc-title { font-size:var(--fs-sm); font-weight:800; color:var(--primary2); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.75rem; }
+.toc ol { padding-left:1.25rem; display:flex; flex-direction:column; gap:.3rem; }
+.toc li { font-size:var(--fs-sm); }
+.toc a { color:var(--ink2); text-decoration:none; transition:color .2s; }
+.toc a:hover { color:var(--primary2); }
+
+/* ── ARTICLES ── */
+.article { margin-bottom:2.25rem; scroll-margin-top:80px; }
+.article-header {
+  display:flex; align-items:center; gap:.75rem;
+  margin-bottom:.875rem;
+}
+.art-num {
+  flex-shrink:0;
+  width:32px; height:32px; border-radius:50%;
+  background:var(--primary); color:#fff;
+  font-size:.75rem; font-weight:900;
+  display:flex; align-items:center; justify-content:center;
+}
+h2.art-title {
+  font-size:var(--fs-h2); font-weight:800;
+  color:var(--night); letter-spacing:-.2px;
+}
+.article p {
+  font-size:var(--fs-body); color:var(--ink2);
+  line-height:1.85; margin-bottom:.75rem;
+}
+.article p:last-child { margin-bottom:0; }
+.article ul, .article ol {
+  padding-left:1.25rem;
+  display:flex; flex-direction:column; gap:.4rem;
+  margin:.5rem 0 .75rem;
+}
+.article li {
+  font-size:var(--fs-body); color:var(--ink2); line-height:1.75;
+}
+
+/* 하이라이트 박스 */
+.highlight-box {
+  background:rgba(255,201,0,.1);
+  border-left:4px solid var(--accent);
+  border-radius:0 10px 10px 0;
+  padding:.875rem 1.1rem;
+  font-size:var(--fs-body); color:var(--ink);
+  line-height:1.75; margin:.75rem 0;
+}
+.info-box {
+  background:rgba(26,188,255,.07);
+  border-left:4px solid var(--primary);
+  border-radius:0 10px 10px 0;
+  padding:.875rem 1.1rem;
+  font-size:var(--fs-body); color:var(--ink2);
+  line-height:1.75; margin:.75rem 0;
+}
+
+/* 구분선 */
+.divider {
+  border:none;
+  border-top:1.5px solid rgba(26,188,255,.1);
+  margin:2rem 0;
+}
+
+/* ── FOOTER NOTE ── */
+.footer-note {
+  margin-top:2.5rem;
+  padding-top:1.5rem;
+  border-top:2px solid rgba(26,188,255,.12);
+  text-align:center;
+}
+.footer-note p { font-size:var(--fs-sm); color:var(--ink2); line-height:1.7; }
+.footer-note .brand { font-weight:800; color:var(--primary2); }
+.footer-note .contact {
+  display:inline-flex; align-items:center; gap:.4rem;
+  margin-top:.75rem;
+  background:var(--night); color:#fff;
+  padding:.5rem 1.25rem; border-radius:50px;
+  font-size:var(--fs-sm); font-weight:600;
+  text-decoration:none; transition:opacity .2s;
+}
+.footer-note .contact:hover { opacity:.8; }
+
+/* ── PAGE FOOTER ── */
+footer {
+  background:rgba(13,31,60,.93);
+  padding:2rem var(--pad-x);
+  text-align:center;
+}
+footer p { font-size:var(--fs-sm); color:rgba(255,255,255,.35); }
+footer a { color:rgba(255,255,255,.5); text-decoration:none; }
+footer a:hover { color:var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-logo">
+    <img src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67276e37308f1e1139aeac11_haboa_logo_48px.png" alt="haboa">
+  </div>
+  <a href="https://www.haboa.life" class="h-back">← 홈으로</a>
+</header>
+
+<main>
+  <div class="card">
+
+    <!-- 페이지 타이틀 -->
+    <div class="page-badge"><div class="dot"></div> Legal</div>
+    <h1 class="page-title">서비스 <span class="hl">이용약관</span></h1>
+    <p class="page-meta">시행일: <span>2024년 1월 1일</span> &nbsp;·&nbsp; 최종 수정: <span>2024년 1월 1일</span></p>
+
+    <!-- 목차 -->
+    <nav class="toc" aria-label="목차">
+      <div class="toc-title">목차</div>
+      <ol>
+        <li><a href="#art1">제1조 목적</a></li>
+        <li><a href="#art2">제2조 정의</a></li>
+        <li><a href="#art3">제3조 약관의 효력 및 변경</a></li>
+        <li><a href="#art4">제4조 서비스 이용 신청 및 가입</a></li>
+        <li><a href="#art5">제5조 서비스의 제공 및 변경</a></li>
+        <li><a href="#art6">제6조 광고성 정보의 전송</a></li>
+        <li><a href="#art7">제7조 서비스의 중단</a></li>
+        <li><a href="#art8">제8조 이용자의 의무</a></li>
+        <li><a href="#art9">제9조 회사의 의무</a></li>
+        <li><a href="#art10">제10조 유료 서비스 및 결제</a></li>
+        <li><a href="#art11">제11조 환불 정책</a></li>
+        <li><a href="#art12">제12조 개인정보 보호</a></li>
+        <li><a href="#art13">제13조 서비스 이용 제한</a></li>
+        <li><a href="#art14">제14조 면책 조항</a></li>
+        <li><a href="#art15">제15조 분쟁 해결</a></li>
+      </ol>
+    </nav>
+
+    <!-- 도입 -->
+    <div class="highlight-box">
+      본 약관은 해보아(이하 "회사")가 제공하는 습관 관리 서비스 "해보아(HABOA)"의 이용 조건 및 절차에 관한 사항을 규정합니다. 서비스를 이용하시기 전에 본 약관을 주의 깊게 읽어 주시기 바랍니다.
+    </div>
+
+    <hr class="divider">
+
+    <!-- 제1조 -->
+    <article class="article" id="art1">
+      <div class="article-header">
+        <div class="art-num">1</div>
+        <h2 class="art-title">목적</h2>
+      </div>
+      <p>본 약관은 회사가 운영하는 해보아 서비스(웹사이트 및 모바일 앱 포함)를 이용함에 있어 회사와 이용자 간의 권리, 의무 및 책임 사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+    </article>
+
+    <!-- 제2조 -->
+    <article class="article" id="art2">
+      <div class="article-header">
+        <div class="art-num">2</div>
+        <h2 class="art-title">정의</h2>
+      </div>
+      <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+      <ul>
+        <li><strong>"회사"</strong>란 이용자에게 서비스를 제공하기 위하여 관련된 제반 시스템을 운영하는 사업자를 말합니다.</li>
+        <li><strong>"서비스"</strong>란 회사가 제공하는 습관 관리 앱 해보아(HABOA) 및 관련 부가 서비스 전체를 의미합니다.</li>
+        <li><strong>"이용자"</strong>란 본 약관에 동의하고 서비스를 이용하는 모든 자를 말합니다.</li>
+        <li><strong>"회원"</strong>이란 회사에 개인 정보를 제공하고 회원 가입을 완료한 자를 말합니다.</li>
+        <li><strong>"콘텐츠"</strong>란 서비스 내에 게시된 텍스트, 이미지, 영상, 습관 데이터 등 일체의 정보를 말합니다.</li>
+      </ul>
+    </article>
+
+    <!-- 제3조 -->
+    <article class="article" id="art3">
+      <div class="article-header">
+        <div class="art-num">3</div>
+        <h2 class="art-title">약관의 효력 및 변경</h2>
+      </div>
+      <p>본 약관은 서비스 화면에 게시하거나 이용자에게 공지함으로써 효력이 발생합니다.</p>
+      <p>회사는 관련 법령을 위배하지 않는 범위 내에서 본 약관을 개정할 수 있으며, 약관이 변경될 경우 시행일 기준 7일 전에 공지합니다. 중요한 변경 사항은 30일 전에 공지합니다.</p>
+      <div class="info-box">
+        변경된 약관에 동의하지 않는 경우, 이용자는 서비스 이용을 중단하고 회원 탈퇴를 요청할 수 있습니다. 변경 공지 이후에도 계속 서비스를 이용하는 경우 변경된 약관에 동의한 것으로 간주합니다.
+      </div>
+    </article>
+
+    <!-- 제4조 -->
+    <article class="article" id="art4">
+      <div class="article-header">
+        <div class="art-num">4</div>
+        <h2 class="art-title">서비스 이용 신청 및 가입</h2>
+      </div>
+      <p>서비스 이용 신청은 이용자가 온라인으로 회원 가입 양식을 작성하고 본 약관에 동의함으로써 이루어집니다.</p>
+      <p>다음에 해당하는 경우 회사는 이용 신청을 승낙하지 않을 수 있습니다.</p>
+      <ul>
+        <li>타인의 명의를 이용하여 신청한 경우</li>
+        <li>허위 정보를 기재하거나 회사가 요구하는 내용을 기재하지 않은 경우</li>
+        <li>만 14세 미만의 아동인 경우 (법정 대리인의 동의 없이 신청한 경우)</li>
+        <li>이전에 이용 자격을 상실한 이력이 있는 경우</li>
+      </ul>
+    </article>
+
+    <!-- 제5조 -->
+    <article class="article" id="art5">
+      <div class="article-header">
+        <div class="art-num">5</div>
+        <h2 class="art-title">서비스의 제공 및 변경</h2>
+      </div>
+      <ol>
+        <li>회사는 이용자에게 모바일 어플리케이션을 통해 습관 생성 및 관리 등의 콘텐츠 및 제반 서비스를 제공합니다.</li>
+        <li>회사는 상당한 이유가 있는 경우에 운영상, 기술상의 필요에 따라 제공하고 있는 전부 또는 일부 서비스를 변경할 수 있습니다.</li>
+        <li>서비스의 내용, 이용방법, 이용시간에 대하여 변경이 있는 경우에는 변경사유, 변경될 서비스의 내용 및 제공일자 등을 그 변경 전에 서비스 내 공지사항에 게시합니다.</li>
+        <li>회사는 무료로 제공되는 서비스의 일부 또는 전부를 회사의 정책 및 운영의 필요상 수정, 중단, 변경할 수 있으며, 이에 대하여 관련 법령에 특별한 규정이 없는 한 회원에게 별도의 보상을 하지 않습니다.</li>
+      </ol>
+    </article>
+
+    <!-- 제6조 -->
+    <article class="article" id="art6">
+      <div class="article-header">
+        <div class="art-num">6</div>
+        <h2 class="art-title">광고성 정보의 전송</h2>
+      </div>
+      <ol>
+        <li>회사는 회원이 별도의 마케팅 정보 수신 동의를 한 경우에 한하여, 회원에게 광고성 정보를 전자우편, 문자, 푸시 알림 등의 방법으로 전송할 수 있습니다.</li>
+        <li>회원은 언제든지 서비스 내 설정이나 고객센터를 통해 마케팅 정보 수신 동의를 철회할 수 있으며, 회사는 회원의 수신 거부 의사가 접수된 즉시 광고성 정보 전송을 중단합니다.</li>
+        <li>회원은 광고성 정보 수신에 동의하지 않더라도 회사가 제공하는 기본적인 서비스 이용에 제한을 받지 않습니다. 단, 이벤트, 혜택 안내 등 일부 서비스의 이용이 제한될 수 있습니다.</li>
+      </ol>
+    </article>
+
+    <!-- 제7조 -->
+    <article class="article" id="art7">
+      <div class="article-header">
+        <div class="art-num">7</div>
+        <h2 class="art-title">서비스의 중단</h2>
+      </div>
+      <ol>
+        <li>회사는 컴퓨터 등 정보통신설비의 보수점검, 교체 및 고장, 통신두절 또는 운영상 상당한 이유가 있는 경우 서비스의 제공을 일시적으로 중단할 수 있습니다.</li>
+        <li>회사는 서비스의 제공에 필요한 경우 정기점검을 실시할 수 있으며, 정기점검시간은 서비스 제공화면에 공지한 바에 따릅니다.</li>
+      </ol>
+    </article>
+
+    <!-- 제8조 (구 제6조) -->
+    <article class="article" id="art8">
+      <div class="article-header">
+        <div class="art-num">8</div>
+        <h2 class="art-title">이용자의 의무</h2>
+      </div>
+      <p>이용자는 다음 각 호의 행위를 하여서는 안 됩니다.</p>
+      <ul>
+        <li>타인의 정보를 도용하거나 허위 정보를 입력하는 행위</li>
+        <li>회사의 서비스를 이용하여 법령 또는 본 약관이 금지하는 행위</li>
+        <li>다른 이용자의 개인 정보를 무단으로 수집·이용하는 행위</li>
+        <li>서비스의 정상적인 운영을 방해하는 행위 (악성코드 배포, 해킹 등)</li>
+        <li>음란물, 폭력적인 콘텐츠 등 타인에게 불쾌감을 주는 콘텐츠를 게시하는 행위</li>
+        <li>회사의 지식재산권을 침해하는 행위</li>
+      </ul>
+    </article>
+
+    <!-- 제9조 (구 제7조) -->
+    <article class="article" id="art9">
+      <div class="article-header">
+        <div class="art-num">9</div>
+        <h2 class="art-title">회사의 의무</h2>
+      </div>
+      <p>회사는 관련 법령 및 본 약관을 준수하며, 지속적이고 안정적인 서비스 제공을 위해 최선을 다합니다.</p>
+      <p>회사는 이용자의 개인 정보를 개인정보 처리방침에 따라 안전하게 관리하며, 이용자의 동의 없이 제3자에게 제공하지 않습니다.</p>
+      <p>서비스 이용과 관련한 이용자의 불만 및 의견은 합리적인 기간 내에 처리하겠습니다.</p>
+    </article>
+
+    <!-- 제10조 (구 제8조) -->
+    <article class="article" id="art10">
+      <div class="article-header">
+        <div class="art-num">10</div>
+        <h2 class="art-title">유료 서비스 및 결제</h2>
+      </div>
+      <p>일부 서비스는 유료로 제공될 수 있으며, 유료 서비스 이용 시 해당 요금제에 명시된 금액을 납부하여야 합니다.</p>
+      <p>유료 서비스의 요금 및 결제 방법은 서비스 내 안내 페이지에서 확인할 수 있으며, 회사는 요금 정책을 변경할 경우 30일 전에 공지합니다.</p>
+      <div class="highlight-box">
+        신규 가입 회원에게는 7일간의 무료 체험 기간이 제공됩니다. 무료 체험 기간 내 언제든지 취소할 수 있으며, 이 경우 요금이 청구되지 않습니다.
+      </div>
+    </article>
+
+    <!-- 제11조 (구 제9조) -->
+    <article class="article" id="art11">
+      <div class="article-header">
+        <div class="art-num">11</div>
+        <h2 class="art-title">환불 정책</h2>
+      </div>
+      <p>유료 서비스 결제 후 7일 이내에 서비스를 이용하지 않은 경우 전액 환불이 가능합니다.</p>
+      <p>서비스 이용 중 회사의 귀책 사유로 서비스가 정상 제공되지 않은 경우, 해당 기간에 비례한 금액을 환불합니다.</p>
+      <p>다음의 경우에는 환불이 제한될 수 있습니다.</p>
+      <ul>
+        <li>이용자의 단순 변심으로 인한 환불 요청 (7일 초과 시)</li>
+        <li>이용자가 서비스를 상당 부분 이용한 경우</li>
+        <li>약관 위반으로 인한 서비스 이용 제한 조치가 취해진 경우</li>
+      </ul>
+    </article>
+
+    <!-- 제12조 (구 제10조) -->
+    <article class="article" id="art12">
+      <div class="article-header">
+        <div class="art-num">12</div>
+        <h2 class="art-title">개인정보 보호</h2>
+      </div>
+      <p>회사는 이용자의 개인정보를 중요시하며, 『개인정보 보호법』 등 관련 법령을 준수합니다.</p>
+      <p>개인정보의 수집, 이용, 보관, 파기 등에 관한 상세한 내용은 서비스 내 <a href="https://www.haboa.life/privacy-policy" style="color:var(--primary2);font-weight:700;">개인정보 처리방침</a>을 통해 확인하실 수 있습니다.</p>
+    </article>
+
+    <!-- 제13조 (구 제11조) -->
+    <article class="article" id="art13">
+      <div class="article-header">
+        <div class="art-num">13</div>
+        <h2 class="art-title">서비스 이용 제한</h2>
+      </div>
+      <p>회사는 이용자가 본 약관의 의무를 위반하거나 서비스의 정상적인 운영을 방해하는 경우, 경고·이용 정지·영구 이용 정지 등의 조치를 취할 수 있습니다.</p>
+      <p>이용 제한 조치에 이의가 있는 경우, 이용자는 고객센터를 통해 이의를 제기할 수 있으며, 회사는 합리적인 기간 내에 이를 검토합니다.</p>
+    </article>
+
+    <!-- 제14조 (구 제12조) -->
+    <article class="article" id="art14">
+      <div class="article-header">
+        <div class="art-num">14</div>
+        <h2 class="art-title">면책 조항</h2>
+      </div>
+      <p>회사는 천재지변, 전쟁, 기간통신사업자의 서비스 중단 등 불가항력적 사유로 인한 서비스 중단에 대해 책임을 지지 않습니다.</p>
+      <p>회사는 이용자가 서비스를 통해 얻은 정보 또는 자료의 신뢰도·정확성 등에 대해 보증하지 않으며, 이로 인해 발생한 손해에 대해 책임을 지지 않습니다.</p>
+      <div class="info-box">
+        해보아는 습관 형성을 보조하는 도구입니다. 서비스 이용 결과(습관 달성 여부 등)에 대한 최종적인 책임은 이용자 본인에게 있습니다.
+      </div>
+    </article>
+
+    <!-- 제15조 (구 제13조) -->
+    <article class="article" id="art15">
+      <div class="article-header">
+        <div class="art-num">15</div>
+        <h2 class="art-title">분쟁 해결</h2>
+      </div>
+      <p>서비스 이용과 관련하여 분쟁이 발생한 경우, 회사와 이용자는 원만한 합의를 위해 성실히 협의합니다.</p>
+      <p>협의가 이루어지지 않을 경우, 관련 법령에 따른 관할 법원에 소를 제기할 수 있습니다. 준거법은 대한민국 법률로 합니다.</p>
+    </article>
+
+    <hr class="divider">
+
+    <!-- 하단 안내 -->
+    <div class="footer-note">
+      <p>약관에 대해 궁금한 점이 있으시면 언제든지 문의해 주세요.</p>
+      <p>운영사: <span class="brand">HABOA</span> &nbsp;·&nbsp; 서비스명: 해보아(HABOA)</p>
+      <a href="/cdn-cgi/l/email-protection#b2c1c7c2c2ddc0c6f2dad3d0ddd39cdedbd4d7" class="contact">📩 고객센터 문의하기</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p>© 2024 HABOA. All rights reserved. &nbsp;·&nbsp; <a href="https://www.haboa.life/privacy-policy">개인정보처리방침</a> &nbsp;·&nbsp; <a href="https://www.haboa.life">haboa
