@@ -4,636 +4,471 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>개인정보 처리방침 – 해보아</title>
+<meta name="description" content="해보아(HABOA) 개인정보 처리방침">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary:  #1abcff;
-  --primary2: #0099dd;
-  --accent:   #ffc900;
-  --night:    #0D1F3C;
-  --ink:      #1A2030;
-  --ink2:     #4A5568;
-  --radius:   1rem;
-  --pad-x:    clamp(1.25rem, 5vw, 4rem);
-  --max-w:    760px;
-
-  --fs-h1:   clamp(1.6rem, 4vw, 2.4rem);
-  --fs-h2:   clamp(1.05rem, 2.5vw, 1.3rem);
-  --fs-body: clamp(0.875rem, 1.4vw, 0.975rem);
-  --fs-sm:   clamp(0.75rem, 1.1vw, 0.825rem);
+:root{
+  --bg:#ffffff;
+  --fg:#191f28;
+  --fg-muted:#4e5968;
+  --fg-subtle:#8b95a1;
+  --line:#e5e8eb;
+  --line-strong:#d1d6db;
+  --accent:#3182f6;
+  --box:#f7f8fa;
+  --max:720px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);
+  color:var(--fg-muted);
+  font-size:15px;
+  line-height:1.75;
+  word-break:keep-all;
 }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  font-family:'Noto Sans KR', sans-serif;
-  font-size:var(--fs-body);
-  color:var(--ink);
-  line-height:1.8;
-  overflow-x:hidden;
+/* ── header ── */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.site-header .inner{
+  max-width:var(--max);margin:0 auto;
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.site-header img{height:20px;display:block}
+.site-header a.back{
+  font-size:13px;font-weight:500;color:var(--fg-subtle);text-decoration:none;
+}
+.site-header a.back:hover{color:var(--fg)}
+
+/* ── layout ── */
+main{max-width:var(--max);margin:0 auto;padding:48px 24px 80px}
+
+.doc-title{font-size:26px;font-weight:800;color:var(--fg);letter-spacing:-.02em;line-height:1.3}
+.doc-meta{
+  margin-top:10px;padding-bottom:28px;
+  border-bottom:1px solid var(--line);
+  font-size:13px;color:var(--fg-subtle);
+}
+.doc-lead{margin:28px 0;font-size:15px;color:var(--fg-muted);line-height:1.8}
+
+/* ── toc ── */
+.toc{
+  margin:28px 0 8px;padding:20px 22px;
+  background:var(--box);border-radius:14px;
+}
+.toc h2{
+  font-size:12px;font-weight:700;letter-spacing:.06em;
+  color:var(--fg-subtle);text-transform:uppercase;margin-bottom:10px;
+}
+.toc ol{list-style:none}
+.toc li{margin:2px 0}
+.toc a{
+  font-size:14px;color:var(--fg-muted);text-decoration:none;line-height:1.9;
+}
+.toc a:hover{color:var(--accent)}
+
+/* ── sections ── */
+section.article{margin-top:44px;scroll-margin-top:72px}
+section.article > h2{
+  font-size:17px;font-weight:700;color:var(--fg);
+  letter-spacing:-.01em;margin-bottom:14px;line-height:1.5;
+}
+section.article p{margin:10px 0}
+section.article ul,section.article ol{
+  margin:10px 0;padding-left:20px;
+  display:flex;flex-direction:column;gap:7px;
+}
+section.article li{line-height:1.7}
+section.article ul ul,section.article ol ul,section.article ol ol{margin:7px 0 2px}
+strong{color:var(--fg);font-weight:700}
+.sub-label{font-weight:700;color:var(--fg);margin:22px 0 4px}
+
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── tables ── */
+.table-wrap{overflow-x:auto;margin:16px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:420px}
+th,td{
+  border:1px solid var(--line);
+  padding:10px 12px;text-align:left;vertical-align:top;line-height:1.65;
+}
+th{background:var(--box);color:var(--fg);font-weight:700;white-space:nowrap}
+td{color:var(--fg-muted)}
+
+/* ── note box ── */
+.note{
+  margin:16px 0;padding:16px 20px;
+  background:var(--box);border-radius:12px;
+  font-size:13.5px;color:var(--fg-muted);line-height:1.75;
 }
 
-body::before {
-  content:'';
-  position:fixed; inset:0; z-index:-2;
-  background:linear-gradient(180deg, #1abcff 0%, #7dd8ff 18%, #fffce8 55%, #ffdf55 82%, #ffc900 100%);
-}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
 
-/* ── HEADER ── */
-header {
-  position:sticky; top:0; z-index:100;
-  background:rgba(26,188,255,.18);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(255,255,255,.38);
-  padding:14px var(--pad-x);
-  display:flex; align-items:center; gap:1rem;
+/* ── footer ── */
+.site-footer{border-top:1px solid var(--line);background:var(--box)}
+.site-footer .inner{
+  max-width:var(--max);margin:0 auto;padding:32px 24px 56px;
 }
-.h-logo {
-  position:relative;
-  display:flex; align-items:center; justify-content:center;
-  width:48px; height:48px; flex-shrink:0;
-}
-.h-logo::before {
-  content:''; position:absolute; inset:0;
-  border-radius:50%; background:#ffc900; opacity:.9; z-index:0;
-}
-.h-logo img { height:26px; position:relative; z-index:1; }
-.h-back {
-  display:inline-flex; align-items:center; gap:.4rem;
-  font-size:var(--fs-sm); font-weight:600; color:var(--night);
-  background:rgba(255,255,255,.6); border:1.5px solid rgba(26,188,255,.25);
-  padding:.4rem .9rem; border-radius:50px;
-  text-decoration:none; transition:background .2s;
-  margin-left:auto;
-}
-.h-back:hover { background:rgba(255,255,255,.9); }
+.foot-links{font-size:13px;color:var(--fg-subtle)}
+.foot-links a{color:var(--fg-muted)}
+.foot-copy{margin-top:10px;font-size:12px;color:var(--fg-subtle)}
 
-/* ── MAIN ── */
-main {
-  max-width:var(--max-w);
-  margin:2.5rem auto 4rem;
-  padding:0 var(--pad-x);
+@media(max-width:600px){
+  main{padding:36px 20px 64px}
+  .doc-title{font-size:22px}
 }
-.card {
-  background:rgba(255,255,255,.93);
-  border-radius:1.5rem;
-  padding:clamp(1.75rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3rem);
-  box-shadow:0 8px 48px rgba(26,188,255,.1);
-}
-
-/* ── 페이지 타이틀 ── */
-.page-badge {
-  display:inline-flex; align-items:center; gap:.5rem;
-  background:rgba(26,188,255,.1); border:1.5px solid rgba(26,188,255,.25);
-  color:var(--primary2); border-radius:50px;
-  padding:.4rem 1rem; font-size:var(--fs-sm); font-weight:700;
-  letter-spacing:.5px; margin-bottom:1.1rem;
-}
-.page-badge .dot { width:7px; height:7px; border-radius:50%; background:var(--accent); }
-h1.page-title {
-  font-size:var(--fs-h1); font-weight:900;
-  line-height:1.2; letter-spacing:-.5px;
-  color:var(--night); margin-bottom:.5rem;
-}
-h1.page-title .hl { color:var(--primary2); }
-.page-meta {
-  font-size:var(--fs-sm); color:var(--ink2);
-  padding-bottom:1.75rem;
-  border-bottom:2px solid rgba(26,188,255,.12);
-  margin-bottom:2rem;
-}
-.page-meta span { font-weight:700; color:var(--night); }
-
-/* ── TOC ── */
-.toc {
-  background:rgba(26,188,255,.06);
-  border:1.5px solid rgba(26,188,255,.15);
-  border-radius:var(--radius);
-  padding:1.25rem 1.5rem;
-  margin-bottom:2.5rem;
-}
-.toc-title { font-size:var(--fs-sm); font-weight:800; color:var(--primary2); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.75rem; }
-.toc ol { padding-left:1.25rem; display:flex; flex-direction:column; gap:.3rem; }
-.toc li { font-size:var(--fs-sm); }
-.toc a { color:var(--ink2); text-decoration:none; transition:color .2s; }
-.toc a:hover { color:var(--primary2); }
-
-/* ── ARTICLES ── */
-.article { margin-bottom:2.25rem; scroll-margin-top:80px; }
-.article-header {
-  display:flex; align-items:center; gap:.75rem;
-  margin-bottom:.875rem;
-}
-.art-num {
-  flex-shrink:0;
-  min-width:32px; height:32px; padding:0 .4rem; border-radius:50px;
-  background:var(--primary); color:#fff;
-  font-size:.75rem; font-weight:900;
-  display:flex; align-items:center; justify-content:center;
-}
-h2.art-title {
-  font-size:var(--fs-h2); font-weight:800;
-  color:var(--night); letter-spacing:-.2px;
-}
-.article p {
-  font-size:var(--fs-body); color:var(--ink2);
-  line-height:1.85; margin-bottom:.75rem;
-}
-.article p:last-child { margin-bottom:0; }
-.article ul, .article ol {
-  padding-left:1.25rem;
-  display:flex; flex-direction:column; gap:.4rem;
-  margin:.5rem 0 .75rem;
-}
-.article li { font-size:var(--fs-body); color:var(--ink2); line-height:1.75; }
-.article ul ul, .article ol ul { margin:.4rem 0 .2rem; }
-.sub-label { font-weight:700; color:var(--night); margin-top:1rem; }
-
-/* 테이블 */
-.table-wrap { overflow-x:auto; margin:.75rem 0 1rem; }
-.info-table {
-  width:100%; border-collapse:collapse;
-  font-size:var(--fs-sm);
-  border-radius:var(--radius); overflow:hidden;
-}
-.info-table th {
-  background:rgba(26,188,255,.12);
-  color:var(--night); font-weight:700;
-  padding:.65rem .875rem; text-align:left;
-  border-bottom:2px solid rgba(26,188,255,.18);
-}
-.info-table td {
-  padding:.65rem .875rem; color:var(--ink2);
-  border-bottom:1px solid rgba(0,0,0,.05);
-  vertical-align:top; line-height:1.7;
-}
-.info-table tr:last-child td { border-bottom:none; }
-.info-table tr:nth-child(even) td { background:rgba(26,188,255,.03); }
-
-/* 박스 */
-.highlight-box {
-  background:rgba(255,201,0,.1);
-  border-left:4px solid var(--accent);
-  border-radius:0 10px 10px 0;
-  padding:.875rem 1.1rem;
-  font-size:var(--fs-body); color:var(--ink);
-  line-height:1.75; margin:.75rem 0;
-}
-.info-box {
-  background:rgba(26,188,255,.07);
-  border-left:4px solid var(--primary);
-  border-radius:0 10px 10px 0;
-  padding:.875rem 1.1rem;
-  font-size:var(--fs-body); color:var(--ink2);
-  line-height:1.75; margin:.75rem 0;
-}
-
-.divider { border:none; border-top:1.5px solid rgba(26,188,255,.1); margin:2rem 0; }
-
-/* ── FOOTER NOTE ── */
-.footer-note {
-  margin-top:2.5rem; padding-top:1.5rem;
-  border-top:2px solid rgba(26,188,255,.12);
-  text-align:center;
-}
-.footer-note p { font-size:var(--fs-sm); color:var(--ink2); line-height:1.7; }
-.footer-note .brand { font-weight:800; color:var(--primary2); }
-.footer-note .contact {
-  display:inline-flex; align-items:center; gap:.4rem;
-  margin-top:.75rem;
-  background:var(--night); color:#fff;
-  padding:.5rem 1.25rem; border-radius:50px;
-  font-size:var(--fs-sm); font-weight:600;
-  text-decoration:none; transition:opacity .2s;
-}
-.footer-note .contact:hover { opacity:.8; }
-
-/* ── PAGE FOOTER ── */
-footer {
-  background:rgba(13,31,60,.93);
-  padding:2rem var(--pad-x);
-  text-align:center;
-}
-footer p { font-size:var(--fs-sm); color:rgba(255,255,255,.35); }
-footer a { color:rgba(255,255,255,.5); text-decoration:none; }
-footer a:hover { color:var(--accent); }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="h-logo">
-    <img src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67276e37308f1e1139aeac11_haboa_logo_48px.png" alt="haboa">
+<header class="site-header">
+  <div class="inner">
+    <img src="https://cdn.prod.website-files.com/672736dca219f17588e44452/67276e37308f1e1139aeac11_haboa_logo_48px.png" alt="해보아">
+    <a class="back" href="https://www.haboa.life">← 홈으로</a>
   </div>
-  <a href="https://www.haboa.life" class="h-back">← 홈으로</a>
 </header>
 
 <main>
-  <div class="card">
 
-    <div class="page-badge"><div class="dot"></div> Privacy</div>
-    <h1 class="page-title">개인정보 <span class="hl">처리방침</span></h1>
-    <p class="page-meta">시행일: <span>2026년 10월 1일</span> &nbsp;·&nbsp; 최종 개정일: <span>2026년 10월 1일</span></p>
+  <h1 class="doc-title">개인정보 처리방침</h1>
+  <p class="doc-meta">시행일 2026년 10월 1일 · 최종 개정일 2026년 10월 1일</p>
 
-    <!-- 목차 -->
-    <nav class="toc" aria-label="목차">
-      <div class="toc-title">목차</div>
-      <ol>
-        <li><a href="#p1">제1조 개인정보의 처리 목적</a></li>
-        <li><a href="#p2">제2조 수집하는 개인정보의 항목 및 수집 방법</a></li>
-        <li><a href="#p3">제3조 개인정보의 처리 및 보유 기간</a></li>
-        <li><a href="#p4">제4조 개인정보의 제3자 제공</a></li>
-        <li><a href="#p5">제5조 개인정보 처리의 위탁</a></li>
-        <li><a href="#p6">제6조 개인정보의 국외 이전</a></li>
-        <li><a href="#p7">제7조 개인정보의 파기</a></li>
-        <li><a href="#p8">제8조 정보주체와 법정대리인의 권리·의무 및 행사 방법</a></li>
-        <li><a href="#p9">제9조 개인정보의 안전성 확보 조치</a></li>
-        <li><a href="#p10">제10조 개인정보 자동 수집 장치의 설치·운영 및 거부</a></li>
-        <li><a href="#p11">제11조 만 14세 미만 아동의 개인정보</a></li>
-        <li><a href="#p12">제12조 자동화된 결정에 관한 사항</a></li>
-        <li><a href="#p13">제13조 개인정보 보호책임자 및 열람청구 접수·처리 부서</a></li>
-        <li><a href="#p14">제14조 권익 침해에 대한 구제 방법</a></li>
-        <li><a href="#p15">제15조 개인정보 처리방침의 변경</a></li>
-        <li><a href="#history">처리방침 변경 이력</a></li>
-      </ol>
-    </nav>
+  <p class="doc-lead">
+    그럼스테이트(Grum State)(이하 "회사")는 습관 관리 서비스 해보아(HABOA)를 제공함에 있어 이용자의 개인정보를 소중히 다루며, 「개인정보 보호법」 및 관련 법령을 준수합니다. 본 처리방침은 회사가 어떤 개인정보를 어떤 목적으로 수집하여 어떻게 처리하는지를 안내합니다.
+  </p>
 
-    <div class="highlight-box">
-      그럼스테이트(Grum State)(이하 "회사")는 습관 관리 서비스 해보아(HABOA)를 제공함에 있어 이용자의 개인정보를 소중히 다루며, 「개인정보 보호법」 및 관련 법령을 준수합니다. 본 처리방침은 회사가 어떤 개인정보를 어떤 목적으로 수집하여 어떻게 처리하는지를 안내합니다.
+  <nav class="toc" aria-label="목차">
+    <h2>목차</h2>
+    <ol>
+      <li><a href="#p1">제1조 (개인정보의 처리 목적)</a></li>
+      <li><a href="#p2">제2조 (수집하는 개인정보의 항목 및 수집 방법)</a></li>
+      <li><a href="#p3">제3조 (개인정보의 처리 및 보유 기간)</a></li>
+      <li><a href="#p4">제4조 (개인정보의 제3자 제공)</a></li>
+      <li><a href="#p5">제5조 (개인정보 처리의 위탁)</a></li>
+      <li><a href="#p6">제6조 (개인정보의 국외 이전)</a></li>
+      <li><a href="#p7">제7조 (개인정보의 파기)</a></li>
+      <li><a href="#p8">제8조 (정보주체와 법정대리인의 권리·의무 및 행사 방법)</a></li>
+      <li><a href="#p9">제9조 (개인정보의 안전성 확보 조치)</a></li>
+      <li><a href="#p10">제10조 (개인정보 자동 수집 장치의 설치·운영 및 거부)</a></li>
+      <li><a href="#p11">제11조 (만 14세 미만 아동의 개인정보)</a></li>
+      <li><a href="#p12">제12조 (자동화된 결정에 관한 사항)</a></li>
+      <li><a href="#p13">제13조 (개인정보 보호책임자 및 열람청구 접수·처리 부서)</a></li>
+      <li><a href="#p14">제14조 (권익 침해에 대한 구제 방법)</a></li>
+      <li><a href="#p15">제15조 (개인정보 처리방침의 변경)</a></li>
+      <li><a href="#history">처리방침 변경 이력</a></li>
+    </ol>
+  </nav>
+
+  <section class="article" id="p1">
+    <h2>제1조 (개인정보의 처리 목적)</h2>
+    <p>회사는 다음의 목적을 위하여 개인정보를 처리하며, 목적 이외의 용도로는 이용하지 않습니다. 이용 목적이 변경되는 경우에는 사전에 별도의 동의를 받습니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>처리 목적</th><th>세부 내용</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>회원 가입 및 관리</td><td>가입 의사 확인, 이용자 식별·인증, 만 14세 이상 여부 확인, 부정 이용 방지, 고지사항 전달</td></tr>
+          <tr><td>서비스 제공</td><td>습관 생성·기록·알림 기능 제공, 이용자별 기록 저장 및 동기화, 통계·회고 제공</td></tr>
+          <tr><td>유료서비스 운영</td><td>구독 상태 확인 및 유지, 결제 영수증 검증, 구독 이력 관리, 환불 및 문의 처리</td></tr>
+          <tr><td>고객 지원</td><td>문의 접수 및 처리, 불만 처리, 처리 결과 통지</td></tr>
+          <tr><td>서비스 개선</td><td>앱 오류 진단 및 안정성 개선, 통계 분석에 기반한 기능 개선</td></tr>
+          <tr><td>마케팅 활용 (별도 동의 시)</td><td>이벤트·혜택 안내, 신규 기능 소개</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="article" id="p2">
+    <h2>제2조 (수집하는 개인정보의 항목 및 수집 방법)</h2>
+
+    <p class="sub-label">1. 회원 가입 시 수집하는 항목</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>구분</th><th>수집 항목</th><th>비고</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>필수</td><td>이메일 주소, 비밀번호, 닉네임</td><td>자체 가입 시</td></tr>
+          <tr><td>필수</td><td>소셜 계정 고유 식별자, 이메일 주소, 프로필 이름</td><td>Google 로그인 이용 시</td></tr>
+          <tr><td>선택</td><td>프로필 이미지, 생년월일, 성별</td><td>미입력 시에도 서비스 이용에 제한이 없습니다</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <hr class="divider">
-
-    <!-- 제1조 -->
-    <article class="article" id="p1">
-      <div class="article-header">
-        <div class="art-num">1</div>
-        <h2 class="art-title">개인정보의 처리 목적</h2>
-      </div>
-      <p>회사는 다음의 목적을 위하여 개인정보를 처리하며, 목적 이외의 용도로는 이용하지 않습니다. 이용 목적이 변경되는 경우에는 사전에 별도의 동의를 받습니다.</p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>처리 목적</th><th>세부 내용</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>회원 가입 및 관리</td><td>가입 의사 확인, 이용자 식별·인증, 만 14세 이상 여부 확인, 부정 이용 방지, 고지사항 전달</td></tr>
-            <tr><td>서비스 제공</td><td>습관 생성·기록·알림 기능 제공, 이용자별 기록 저장 및 동기화, 통계·회고 제공</td></tr>
-            <tr><td>유료서비스 운영</td><td>구독 상태 확인 및 유지, 결제 영수증 검증, 구독 이력 관리, 환불 및 문의 처리</td></tr>
-            <tr><td>고객 지원</td><td>문의 접수 및 처리, 불만 처리, 처리 결과 통지</td></tr>
-            <tr><td>서비스 개선</td><td>앱 오류 진단 및 안정성 개선, 통계 분석에 기반한 기능 개선</td></tr>
-            <tr><td>마케팅 활용 (별도 동의 시)</td><td>이벤트·혜택 안내, 신규 기능 소개</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
-
-    <!-- 제2조 -->
-    <article class="article" id="p2">
-      <div class="article-header">
-        <div class="art-num">2</div>
-        <h2 class="art-title">수집하는 개인정보의 항목 및 수집 방법</h2>
-      </div>
-
-      <p class="sub-label">1. 회원 가입 시 수집하는 항목</p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>구분</th><th>수집 항목</th><th>비고</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>필수</td><td>이메일 주소, 비밀번호, 닉네임</td><td>자체 가입 시</td></tr>
-            <tr><td>필수</td><td>소셜 계정 고유 식별자, 이메일 주소, 프로필 이름</td><td>Google 로그인 이용 시</td></tr>
-            <tr><td>선택</td><td>프로필 이미지, 생년월일, 성별</td><td>미입력 시에도 서비스 이용에 제한이 없습니다</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="sub-label">2. 서비스 이용 과정에서 생성·수집되는 항목</p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>구분</th><th>수집 항목</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>서비스 이용 기록</td><td>습관 항목, 실천 기록, 달성 데이터, 이용자가 입력한 메모 및 이미지</td></tr>
-            <tr><td>유료서비스 관련</td><td>앱마켓이 부여한 구매 식별자, 구독 상품명, 구독 시작일 및 만료일, 영수증 검증 결과, 구독 상태 변경 이력</td></tr>
-            <tr><td>자동 수집 정보</td><td>IP 주소, 기기 식별자, 기기 모델, 운영체제 및 버전, 앱 버전, 접속 일시, 서비스 이용 기록, 오류 및 충돌 로그</td></tr>
-            <tr><td>고객 문의 시</td><td>이메일 주소, 문의 내용, 문의 처리를 위해 이용자가 제공한 정보</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="info-box">
-        회사는 카드번호, 계좌번호 등 결제수단 정보를 수집하지 않습니다. 유료서비스의 결제는 Apple App Store 및 Google Play의 인앱결제를 통해 이루어지며, 결제수단 정보는 해당 앱마켓 운영사가 직접 처리합니다.
-      </div>
-
-      <p class="sub-label">3. 수집 방법</p>
-      <ul>
-        <li>이용자가 회원 가입 및 서비스 이용 과정에서 직접 입력</li>
-        <li>Google 로그인 연동 시 이용자의 동의를 거쳐 Google LLC로부터 제공받음</li>
-        <li>앱마켓의 인앱결제 시스템을 통한 구독 상태 정보 수신</li>
-        <li>서비스 이용 과정에서 자동으로 생성·수집</li>
-      </ul>
-
-      <p class="sub-label">4. 앱 접근권한</p>
-      <p>회사는 서비스 제공에 필요한 범위에서 단말기의 접근권한을 요청하며, <strong>선택 접근권한에 동의하지 않아도 서비스의 기본적인 이용에는 제한이 없습니다.</strong></p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>접근권한</th><th>구분</th><th>이용 목적</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>알림</td><td>선택</td><td>이용자가 설정한 시각에 습관 실천 알림을 표시</td></tr>
-            <tr><td>사진·카메라</td><td>선택</td><td>프로필 이미지 및 습관 기록 이미지 등록</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p><strong>알림은 이용자의 기기 내에서 직접 생성되어 표시되며, 알림 발송을 위해 개인정보가 외부로 전송되지 않습니다.</strong></p>
-      <p>접근권한은 단말기 설정에서 언제든지 철회할 수 있습니다. Android는 [설정 → 애플리케이션 → 해보아 → 권한], iOS는 [설정 → 해보아]에서 변경할 수 있습니다.</p>
-    </article>
-
-    <!-- 제3조 -->
-    <article class="article" id="p3">
-      <div class="article-header">
-        <div class="art-num">3</div>
-        <h2 class="art-title">개인정보의 처리 및 보유 기간</h2>
-      </div>
-      <p>회사는 법령에 따른 보유·이용 기간 또는 이용자로부터 동의받은 기간 내에서 개인정보를 처리·보유합니다.</p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>항목</th><th>보유 기간</th><th>근거</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>회원 정보, 습관 기록 등 이용자 콘텐츠</td><td>회원 탈퇴 즉시 파기</td><td>서비스 이용계약</td></tr>
-            <tr><td>계약 또는 청약철회 등에 관한 기록</td><td>5년</td><td>전자상거래법</td></tr>
-            <tr><td>대금 결제 및 재화 등의 공급에 관한 기록</td><td>5년</td><td>전자상거래법</td></tr>
-            <tr><td>소비자의 불만 또는 분쟁 처리에 관한 기록</td><td>3년</td><td>전자상거래법</td></tr>
-            <tr><td>표시·광고에 관한 기록</td><td>6개월</td><td>전자상거래법</td></tr>
-            <tr><td>서비스 접속 기록</td><td>3개월</td><td>통신비밀보호법</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p><strong>회원이 탈퇴하는 경우 회사는 이용자 콘텐츠를 지체 없이 복구 불가능한 방법으로 파기합니다.</strong> 다만 위 표에 기재된 바와 같이 법령에 따라 보존 의무가 있는 거래 관련 기록은 해당 기간 동안 다른 정보와 분리하여 별도로 보관하며, 보존 목적 외의 용도로는 이용하지 않습니다.</p>
-    </article>
-
-    <!-- 제4조 -->
-    <article class="article" id="p4">
-      <div class="article-header">
-        <div class="art-num">4</div>
-        <h2 class="art-title">개인정보의 제3자 제공</h2>
-      </div>
-      <ol>
-        <li>회사는 이용자의 개인정보를 제1조에 명시한 목적 범위 내에서만 처리하며, <strong>제3자에게 제공하지 않습니다.</strong></li>
-        <li>다만 다음의 경우에는 예외로 합니다.
-          <ul>
-            <li>이용자로부터 별도의 동의를 받은 경우</li>
-            <li>법령에 특별한 규정이 있거나, 수사기관이 법령에 정해진 절차와 방법에 따라 요구하는 경우</li>
-          </ul>
-        </li>
-        <li>향후 제3자 제공이 필요해지는 경우, 회사는 제공받는 자, 제공 목적, 제공 항목, 보유 기간을 안내하고 별도의 동의를 받겠습니다.</li>
-      </ol>
-    </article>
-
-    <!-- 제5조 -->
-    <article class="article" id="p5">
-      <div class="article-header">
-        <div class="art-num">5</div>
-        <h2 class="art-title">개인정보 처리의 위탁</h2>
-      </div>
-      <p>회사는 원활한 서비스 제공을 위해 아래와 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>수탁자</th><th>위탁 업무</th><th>보유 및 이용 기간</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Supabase, Inc.</td><td>데이터베이스 운영 및 데이터 저장, 회원 인증 처리</td><td>위탁계약 종료 시 또는 회원 탈퇴 시까지</td></tr>
-            <tr><td>RevenueCat, Inc.</td><td>구독 상태 관리 및 인앱결제 영수증 검증</td><td>위탁계약 종료 시 또는 회원 탈퇴 시까지</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>회사는 위탁계약 체결 시 개인정보 보호법 제26조에 따라 위탁 업무 수행 목적 외 개인정보 처리 금지, 기술적·관리적 보호조치, 재위탁 제한, 수탁자에 대한 관리·감독, 손해배상 등의 사항을 계약서에 명시하고 있습니다.</p>
-      <p>위탁 업무의 내용이나 수탁자가 변경되는 경우, 회사는 지체 없이 본 처리방침을 통해 공개합니다.</p>
-    </article>
-
-    <!-- 제6조 -->
-    <article class="article" id="p6">
-      <div class="article-header">
-        <div class="art-num">6</div>
-        <h2 class="art-title">개인정보의 국외 이전</h2>
-      </div>
-      <p>회사는 서비스 제공을 위해 아래와 같이 개인정보를 국외로 이전하고 있습니다.</p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>이전받는 자</th><th>이전 국가</th><th>이전 일시 및 방법</th><th>이전 항목</th><th>이용 목적</th><th>보유 및 이용 기간</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Supabase, Inc.<br>(미국 소재 법인, 문의: privacy@supabase.com)</td>
-              <td>미국<br><strong>단, 개인정보가 저장되는 서버의 물리적 위치는 대한민국(서울 리전)입니다.</strong> 미국 소재 법인이 시스템 운영 및 기술 지원 과정에서 해당 데이터에 접근할 수 있습니다.</td>
-              <td>서비스 이용 시점에 네트워크를 통해 전송</td>
-              <td>제2조에 기재된 수집 항목 전체</td>
-              <td>데이터베이스 운영, 데이터 저장, 회원 인증 처리</td>
-              <td>회원 탈퇴 또는 위탁계약 종료 시까지</td>
-            </tr>
-            <tr>
-              <td>RevenueCat, Inc.<br>(문의: compliance@revenuecat.com)</td>
-              <td>미국</td>
-              <td>결제 및 구독 상태 변경 시점에 네트워크를 통해 전송</td>
-              <td>앱 이용자 식별자, 앱마켓 구매 식별자, 구독 상품 및 상태 정보, 기기 정보</td>
-              <td>구독 상태 관리 및 영수증 검증</td>
-              <td>회원 탈퇴 또는 위탁계약 종료 시까지</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p><strong>이전을 거부하는 방법과 그 효과:</strong> 이용자는 개인정보의 국외 이전을 거부할 수 있습니다. 다만 위 항목은 서비스 제공에 필수적이므로, 거부하는 경우 회원 가입 및 서비스 이용이 제한됩니다. 거부를 원하시는 경우 haboateam@haboa.life로 요청해 주시기 바랍니다.</p>
-      <p>회사는 개인정보 보호법 제28조의8에 따라 국외로 이전되는 개인정보에 대해서도 안전성 확보에 필요한 조치를 취하고 있습니다.</p>
-    </article>
-
-    <!-- 제7조 -->
-    <article class="article" id="p7">
-      <div class="article-header">
-        <div class="art-num">7</div>
-        <h2 class="art-title">개인정보의 파기</h2>
-      </div>
-      <ol>
-        <li>회사는 보유 기간이 경과하거나 처리 목적이 달성되어 개인정보가 불필요하게 되었을 때 지체 없이 해당 정보를 파기합니다.</li>
-        <li>법령에 따라 보존해야 하는 경우에는 해당 개인정보를 별도의 데이터베이스로 옮기거나 보관 장소를 달리하여 보존합니다.</li>
-        <li>파기 방법은 다음과 같습니다.
-          <ul>
-            <li><strong>전자적 파일 형태:</strong> 복원이 불가능한 방법으로 영구 삭제</li>
-            <li><strong>종이 문서 형태:</strong> 분쇄하거나 소각</li>
-          </ul>
-        </li>
-      </ol>
-    </article>
-
-    <!-- 제8조 -->
-    <article class="article" id="p8">
-      <div class="article-header">
-        <div class="art-num">8</div>
-        <h2 class="art-title">정보주체와 법정대리인의 권리·의무 및 행사 방법</h2>
-      </div>
-      <ol>
-        <li>이용자는 회사에 대해 언제든지 다음의 권리를 행사할 수 있습니다.
-          <ul>
-            <li><strong>열람 요구:</strong> 본인의 개인정보 처리 현황 확인</li>
-            <li><strong>정정·삭제 요구:</strong> 오류가 있거나 불필요한 정보의 수정·삭제</li>
-            <li><strong>처리정지 요구:</strong> 개인정보 처리의 중단</li>
-            <li><strong>동의 철회:</strong> 수집·이용·제공 동의의 철회</li>
-          </ul>
-        </li>
-        <li>권리 행사는 서비스 내 [설정] 메뉴 또는 haboateam@haboa.life를 통해 요청할 수 있으며, 회사는 지체 없이 조치합니다.</li>
-        <li>회원 탈퇴는 서비스 내 [설정 → 계정 → 회원탈퇴]에서 직접 처리할 수 있습니다. <strong>유료서비스를 구독 중인 경우, 회원 탈퇴만으로는 앱마켓의 구독이 자동 해지되지 않으므로 앱마켓의 구독 관리 화면에서 별도로 해지해야 합니다.</strong></li>
-        <li>이용자는 법정대리인이나 위임을 받은 자를 통해 권리를 행사할 수 있으며, 이 경우 개인정보 보호법 시행규칙 별지 제11호 서식에 따른 위임장을 제출해야 합니다.</li>
-        <li>개인정보의 열람 및 처리정지 요구는 개인정보 보호법 제35조 제4항, 제37조 제2항에 의하여 제한될 수 있습니다.</li>
-        <li>회사는 권리 행사 요구를 한 자가 본인이거나 정당한 대리인인지를 확인합니다.</li>
-      </ol>
-    </article>
-
-    <!-- 제9조 -->
-    <article class="article" id="p9">
-      <div class="article-header">
-        <div class="art-num">9</div>
-        <h2 class="art-title">개인정보의 안전성 확보 조치</h2>
-      </div>
-      <p>회사는 개인정보의 안전성 확보를 위하여 다음의 조치를 취하고 있습니다.</p>
-      <ul>
-        <li><strong>내부관리계획의 수립 및 시행:</strong> 개인정보의 안전한 처리를 위한 내부관리계획을 수립하고 시행하고 있습니다.</li>
-        <li><strong>개인정보 취급자의 최소화 및 교육:</strong> 개인정보를 처리하는 인원을 최소한으로 지정하고 관리하며, 정기적으로 교육을 실시합니다.</li>
-        <li><strong>접근 권한의 관리:</strong> 개인정보 처리 시스템에 대한 접근 권한을 업무 수행에 필요한 최소한의 범위로 부여하고, 권한 변경 이력을 관리합니다.</li>
-        <li><strong>접속 기록의 보관:</strong> 개인정보 처리 시스템의 접속 기록을 최소 1년 이상 보관·관리합니다.</li>
-        <li><strong>개인정보의 암호화:</strong> 비밀번호는 복호화가 불가능한 일방향 암호화(해시)로 저장되어 회사도 확인할 수 없으며, 중요 정보는 저장 및 전송 시 암호화합니다.</li>
-        <li><strong>해킹 등에 대비한 기술적 대책:</strong> 보안 프로그램을 설치·운영하고 주기적으로 갱신·점검합니다.</li>
-        <li><strong>물리적 접근 통제:</strong> 개인정보가 보관된 시스템에 대한 물리적 접근을 통제합니다.</li>
-      </ul>
-    </article>
-
-    <!-- 제10조 -->
-    <article class="article" id="p10">
-      <div class="article-header">
-        <div class="art-num">10</div>
-        <h2 class="art-title">개인정보 자동 수집 장치의 설치·운영 및 거부</h2>
-      </div>
-      <ol>
-        <li>회사는 웹사이트 이용 시 이용자의 로그인 상태 유지와 설정 저장을 위해 쿠키를 사용할 수 있습니다. 이용자는 브라우저 설정에서 쿠키 저장을 거부할 수 있으나, 이 경우 일부 기능의 이용이 제한될 수 있습니다.</li>
-        <li>모바일 애플리케이션은 쿠키 대신 기기 식별자 및 앱 내 저장소를 이용합니다.</li>
-        <li><strong>회사는 이용자의 행태정보를 수집하여 맞춤형 광고에 활용하지 않으며, 광고 식별자(ADID/IDFA)를 수집하지 않습니다.</strong></li>
-      </ol>
-    </article>
-
-    <!-- 제11조 -->
-    <article class="article" id="p11">
-      <div class="article-header">
-        <div class="art-num">11</div>
-        <h2 class="art-title">만 14세 미만 아동의 개인정보</h2>
-      </div>
-      <ol>
-        <li><strong>회사의 서비스는 만 14세 미만 아동을 대상으로 하지 않으며, 만 14세 미만 아동의 회원 가입을 받지 않습니다.</strong></li>
-        <li>회사는 회원 가입 시 만 14세 이상 여부를 확인합니다.</li>
-        <li>만 14세 미만 아동의 개인정보가 수집된 사실이 확인되는 경우, 회사는 해당 계정을 삭제하고 관련 개인정보를 지체 없이 파기합니다.</li>
-      </ol>
-    </article>
-
-    <!-- 제12조 -->
-    <article class="article" id="p12">
-      <div class="article-header">
-        <div class="art-num">12</div>
-        <h2 class="art-title">자동화된 결정에 관한 사항</h2>
-      </div>
-      <p>회사는 개인정보 보호법 제37조의2에 따른 <strong>완전히 자동화된 시스템으로 이용자의 권리 또는 의무에 중대한 영향을 미치는 결정을 하지 않습니다.</strong> 서비스 내에서 제공되는 통계나 추천은 이용자의 서비스 이용을 돕기 위한 참고 정보이며, 이용자의 법적 지위나 권리에 영향을 미치지 않습니다.</p>
-    </article>
-
-    <!-- 제13조 -->
-    <article class="article" id="p13">
-      <div class="article-header">
-        <div class="art-num">13</div>
-        <h2 class="art-title">개인정보 보호책임자 및 열람청구 접수·처리 부서</h2>
-      </div>
-      <p>회사는 개인정보 처리에 관한 업무를 총괄하고 정보주체의 불만 처리 및 피해 구제를 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>구분</th><th>내용</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>개인정보 보호책임자</td><td>김형욱 (대표)</td></tr>
-            <tr><td>이메일</td><td>haboateam@haboa.life</td></tr>
-            <tr><td>연락처</td><td>010-9052-7563</td></tr>
-            <tr><td>열람청구 접수·처리</td><td>동일 (haboateam@haboa.life)</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>이용자는 서비스 이용 중 발생한 모든 개인정보 보호 관련 문의, 불만 처리, 피해 구제를 개인정보 보호책임자에게 요청할 수 있으며, 회사는 지체 없이 답변하고 처리하겠습니다.</p>
-    </article>
-
-    <!-- 제14조 -->
-    <article class="article" id="p14">
-      <div class="article-header">
-        <div class="art-num">14</div>
-        <h2 class="art-title">권익 침해에 대한 구제 방법</h2>
-      </div>
-      <p>개인정보 침해로 인한 신고나 상담이 필요한 경우 아래 기관에 문의할 수 있습니다.</p>
-      <ul>
-        <li>개인정보 침해신고센터 (국번없이 118, <a href="https://privacy.kisa.or.kr" target="_blank" style="color:var(--primary2);">privacy.kisa.or.kr</a>)</li>
-        <li>개인정보 분쟁조정위원회 (1833-6972, <a href="https://www.kopico.go.kr" target="_blank" style="color:var(--primary2);">www.kopico.go.kr</a>)</li>
-        <li>대검찰청 사이버수사과 (국번없이 1301, www.spo.go.kr)</li>
-        <li>경찰청 사이버수사국 (국번없이 182, ecrm.police.go.kr)</li>
-      </ul>
-      <p>또한 개인정보 보호법 제35조, 제36조, 제37조에 따른 요구에 대하여 공공기관의 장이 행한 처분이나 부작위로 권리 또는 이익을 침해받은 경우에는 행정심판법에 따라 행정심판을 청구할 수 있습니다.</p>
-    </article>
-
-    <!-- 제15조 -->
-    <article class="article" id="p15">
-      <div class="article-header">
-        <div class="art-num">15</div>
-        <h2 class="art-title">개인정보 처리방침의 변경</h2>
-      </div>
-      <ol>
-        <li>본 처리방침은 법령, 정책 또는 보안 기술의 변경에 따라 내용이 추가·삭제 또는 수정될 수 있습니다.</li>
-        <li>처리방침을 변경하는 경우 회사는 변경 사항과 시행일을 <strong>시행일 7일 전부터</strong> 서비스 내 공지사항을 통해 공지합니다. 다만 이용자의 권리에 중대한 변경이 발생하는 경우에는 <strong>30일 전부터</strong> 공지하고 개별 통지합니다.</li>
-        <li>회사는 이전 처리방침을 확인할 수 있도록 변경 이력을 관리합니다.</li>
-      </ol>
-    </article>
-
-    <hr class="divider">
-
-    <!-- 변경 이력 -->
-    <article class="article" id="history">
-      <div class="article-header">
-        <div class="art-num">이력</div>
-        <h2 class="art-title">처리방침 변경 이력</h2>
-      </div>
-      <div class="table-wrap">
-        <table class="info-table">
-          <thead>
-            <tr><th>버전</th><th>시행일</th><th>주요 변경 내용</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>v1.0</td><td>2026.10.01</td><td>최초 시행</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
-
-    <hr class="divider">
-
-    <div class="footer-note">
-      <p>개인정보 처리방침에 대해 궁금한 점이 있으시면 언제든지 문의해 주세요.</p>
-      <p>운영사: <span class="brand">그럼스테이트(Grum State)</span> &nbsp;·&nbsp; 대표 김형욱 &nbsp;·&nbsp; 사업자등록번호 778-70-00635</p>
-      <p>서울특별시 중랑구 봉우재로40길 10, A동 602호 &nbsp;·&nbsp; 개인정보 관련 문의: haboateam@haboa.life</p>
-      <a href="mailto:haboateam@haboa.life" class="contact">📩 개인정보 문의하기</a>
+    <p class="sub-label">2. 서비스 이용 과정에서 생성·수집되는 항목</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>구분</th><th>수집 항목</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>서비스 이용 기록</td><td>습관 항목, 실천 기록, 달성 데이터, 이용자가 입력한 메모 및 이미지</td></tr>
+          <tr><td>유료서비스 관련</td><td>앱마켓이 부여한 구매 식별자, 구독 상품명, 구독 시작일 및 만료일, 영수증 검증 결과, 구독 상태 변경 이력</td></tr>
+          <tr><td>자동 수집 정보</td><td>IP 주소, 기기 식별자, 기기 모델, 운영체제 및 버전, 앱 버전, 접속 일시, 서비스 이용 기록, 오류 및 충돌 로그</td></tr>
+          <tr><td>고객 문의 시</td><td>이메일 주소, 문의 내용, 문의 처리를 위해 이용자가 제공한 정보</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      회사는 카드번호, 계좌번호 등 결제수단 정보를 수집하지 않습니다. 유료서비스의 결제는 Apple App Store 및 Google Play의 인앱결제를 통해 이루어지며, 결제수단 정보는 해당 앱마켓 운영사가 직접 처리합니다.
     </div>
 
-  </div>
+    <p class="sub-label">3. 수집 방법</p>
+    <ul>
+      <li>이용자가 회원 가입 및 서비스 이용 과정에서 직접 입력</li>
+      <li>Google 로그인 연동 시 이용자의 동의를 거쳐 Google LLC로부터 제공받음</li>
+      <li>앱마켓의 인앱결제 시스템을 통한 구독 상태 정보 수신</li>
+      <li>서비스 이용 과정에서 자동으로 생성·수집</li>
+    </ul>
+
+    <p class="sub-label">4. 앱 접근권한</p>
+    <p>회사는 서비스 제공에 필요한 범위에서 단말기의 접근권한을 요청하며, <strong>선택 접근권한에 동의하지 않아도 서비스의 기본적인 이용에는 제한이 없습니다.</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>접근권한</th><th>구분</th><th>이용 목적</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>알림</td><td>선택</td><td>이용자가 설정한 시각에 습관 실천 알림을 표시</td></tr>
+          <tr><td>사진·카메라</td><td>선택</td><td>프로필 이미지 및 습관 기록 이미지 등록</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>알림은 이용자의 기기 내에서 직접 생성되어 표시되며, 알림 발송을 위해 개인정보가 외부로 전송되지 않습니다.</strong></p>
+    <p>접근권한은 단말기 설정에서 언제든지 철회할 수 있습니다. Android는 [설정 → 애플리케이션 → 해보아 → 권한], iOS는 [설정 → 해보아]에서 변경할 수 있습니다.</p>
+  </section>
+
+  <section class="article" id="p3">
+    <h2>제3조 (개인정보의 처리 및 보유 기간)</h2>
+    <p>회사는 법령에 따른 보유·이용 기간 또는 이용자로부터 동의받은 기간 내에서 개인정보를 처리·보유합니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>항목</th><th>보유 기간</th><th>근거</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>회원 정보, 습관 기록 등 이용자 콘텐츠</td><td>회원 탈퇴 즉시 파기</td><td>서비스 이용계약</td></tr>
+          <tr><td>계약 또는 청약철회 등에 관한 기록</td><td>5년</td><td>전자상거래법</td></tr>
+          <tr><td>대금 결제 및 재화 등의 공급에 관한 기록</td><td>5년</td><td>전자상거래법</td></tr>
+          <tr><td>소비자의 불만 또는 분쟁 처리에 관한 기록</td><td>3년</td><td>전자상거래법</td></tr>
+          <tr><td>표시·광고에 관한 기록</td><td>6개월</td><td>전자상거래법</td></tr>
+          <tr><td>서비스 접속 기록</td><td>3개월</td><td>통신비밀보호법</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>회원이 탈퇴하는 경우 회사는 이용자 콘텐츠를 지체 없이 복구 불가능한 방법으로 파기합니다.</strong> 다만 위 표에 기재된 바와 같이 법령에 따라 보존 의무가 있는 거래 관련 기록은 해당 기간 동안 다른 정보와 분리하여 별도로 보관하며, 보존 목적 외의 용도로는 이용하지 않습니다.</p>
+  </section>
+
+  <section class="article" id="p4">
+    <h2>제4조 (개인정보의 제3자 제공)</h2>
+    <ol>
+      <li>회사는 이용자의 개인정보를 제1조에 명시한 목적 범위 내에서만 처리하며, <strong>제3자에게 제공하지 않습니다.</strong></li>
+      <li>다만 다음의 경우에는 예외로 합니다.
+        <ul>
+          <li>이용자로부터 별도의 동의를 받은 경우</li>
+          <li>법령에 특별한 규정이 있거나, 수사기관이 법령에 정해진 절차와 방법에 따라 요구하는 경우</li>
+        </ul>
+      </li>
+      <li>향후 제3자 제공이 필요해지는 경우, 회사는 제공받는 자, 제공 목적, 제공 항목, 보유 기간을 안내하고 별도의 동의를 받겠습니다.</li>
+    </ol>
+  </section>
+
+  <section class="article" id="p5">
+    <h2>제5조 (개인정보 처리의 위탁)</h2>
+    <p>회사는 원활한 서비스 제공을 위해 아래와 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>수탁자</th><th>위탁 업무</th><th>보유 및 이용 기간</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Supabase, Inc.</td><td>데이터베이스 운영 및 데이터 저장, 회원 인증 처리</td><td>위탁계약 종료 시 또는 회원 탈퇴 시까지</td></tr>
+          <tr><td>RevenueCat, Inc.</td><td>구독 상태 관리 및 인앱결제 영수증 검증</td><td>위탁계약 종료 시 또는 회원 탈퇴 시까지</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>회사는 위탁계약 체결 시 개인정보 보호법 제26조에 따라 위탁 업무 수행 목적 외 개인정보 처리 금지, 기술적·관리적 보호조치, 재위탁 제한, 수탁자에 대한 관리·감독, 손해배상 등의 사항을 계약서에 명시하고 있습니다.</p>
+    <p>위탁 업무의 내용이나 수탁자가 변경되는 경우, 회사는 지체 없이 본 처리방침을 통해 공개합니다.</p>
+  </section>
+
+  <section class="article" id="p6">
+    <h2>제6조 (개인정보의 국외 이전)</h2>
+    <p>회사는 서비스 제공을 위해 아래와 같이 개인정보를 국외로 이전하고 있습니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>이전받는 자</th><th>이전 국가</th><th>이전 일시 및 방법</th><th>이전 항목</th><th>이용 목적</th><th>보유 및 이용 기간</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Supabase, Inc.<br>(미국 소재 법인, 문의: privacy@supabase.com)</td>
+            <td>미국<br><strong>단, 개인정보가 저장되는 서버의 물리적 위치는 대한민국(서울 리전)입니다.</strong> 미국 소재 법인이 시스템 운영 및 기술 지원 과정에서 해당 데이터에 접근할 수 있습니다.</td>
+            <td>서비스 이용 시점에 네트워크를 통해 전송</td>
+            <td>제2조에 기재된 수집 항목 전체</td>
+            <td>데이터베이스 운영, 데이터 저장, 회원 인증 처리</td>
+            <td>회원 탈퇴 또는 위탁계약 종료 시까지</td>
+          </tr>
+          <tr>
+            <td>RevenueCat, Inc.<br>(문의: compliance@revenuecat.com)</td>
+            <td>미국</td>
+            <td>결제 및 구독 상태 변경 시점에 네트워크를 통해 전송</td>
+            <td>앱 이용자 식별자, 앱마켓 구매 식별자, 구독 상품 및 상태 정보, 기기 정보</td>
+            <td>구독 상태 관리 및 영수증 검증</td>
+            <td>회원 탈퇴 또는 위탁계약 종료 시까지</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>이전을 거부하는 방법과 그 효과:</strong> 이용자는 개인정보의 국외 이전을 거부할 수 있습니다. 다만 위 항목은 서비스 제공에 필수적이므로, 거부하는 경우 회원 가입 및 서비스 이용이 제한됩니다. 거부를 원하시는 경우 haboateam@haboa.life로 요청해 주시기 바랍니다.</p>
+    <p>회사는 개인정보 보호법 제28조의8에 따라 국외로 이전되는 개인정보에 대해서도 안전성 확보에 필요한 조치를 취하고 있습니다.</p>
+  </section>
+
+  <section class="article" id="p7">
+    <h2>제7조 (개인정보의 파기)</h2>
+    <ol>
+      <li>회사는 보유 기간이 경과하거나 처리 목적이 달성되어 개인정보가 불필요하게 되었을 때 지체 없이 해당 정보를 파기합니다.</li>
+      <li>법령에 따라 보존해야 하는 경우에는 해당 개인정보를 별도의 데이터베이스로 옮기거나 보관 장소를 달리하여 보존합니다.</li>
+      <li>파기 방법은 다음과 같습니다.
+        <ul>
+          <li><strong>전자적 파일 형태:</strong> 복원이 불가능한 방법으로 영구 삭제</li>
+          <li><strong>종이 문서 형태:</strong> 분쇄하거나 소각</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <section class="article" id="p8">
+    <h2>제8조 (정보주체와 법정대리인의 권리·의무 및 행사 방법)</h2>
+    <ol>
+      <li>이용자는 회사에 대해 언제든지 다음의 권리를 행사할 수 있습니다.
+        <ul>
+          <li><strong>열람 요구:</strong> 본인의 개인정보 처리 현황 확인</li>
+          <li><strong>정정·삭제 요구:</strong> 오류가 있거나 불필요한 정보의 수정·삭제</li>
+          <li><strong>처리정지 요구:</strong> 개인정보 처리의 중단</li>
+          <li><strong>동의 철회:</strong> 수집·이용·제공 동의의 철회</li>
+        </ul>
+      </li>
+      <li>권리 행사는 서비스 내 [설정] 메뉴 또는 haboateam@haboa.life를 통해 요청할 수 있으며, 회사는 지체 없이 조치합니다.</li>
+      <li>회원 탈퇴는 서비스 내 [설정 → 계정 → 회원탈퇴]에서 직접 처리할 수 있습니다. <strong>유료서비스를 구독 중인 경우, 회원 탈퇴만으로는 앱마켓의 구독이 자동 해지되지 않으므로 앱마켓의 구독 관리 화면에서 별도로 해지해야 합니다.</strong></li>
+      <li>이용자는 법정대리인이나 위임을 받은 자를 통해 권리를 행사할 수 있으며, 이 경우 개인정보 보호법 시행규칙 별지 제11호 서식에 따른 위임장을 제출해야 합니다.</li>
+      <li>개인정보의 열람 및 처리정지 요구는 개인정보 보호법 제35조 제4항, 제37조 제2항에 의하여 제한될 수 있습니다.</li>
+      <li>회사는 권리 행사 요구를 한 자가 본인이거나 정당한 대리인인지를 확인합니다.</li>
+    </ol>
+  </section>
+
+  <section class="article" id="p9">
+    <h2>제9조 (개인정보의 안전성 확보 조치)</h2>
+    <p>회사는 개인정보의 안전성 확보를 위하여 다음의 조치를 취하고 있습니다.</p>
+    <ul>
+      <li><strong>내부관리계획의 수립 및 시행:</strong> 개인정보의 안전한 처리를 위한 내부관리계획을 수립하고 시행하고 있습니다.</li>
+      <li><strong>개인정보 취급자의 최소화 및 교육:</strong> 개인정보를 처리하는 인원을 최소한으로 지정하고 관리하며, 정기적으로 교육을 실시합니다.</li>
+      <li><strong>접근 권한의 관리:</strong> 개인정보 처리 시스템에 대한 접근 권한을 업무 수행에 필요한 최소한의 범위로 부여하고, 권한 변경 이력을 관리합니다.</li>
+      <li><strong>접속 기록의 보관:</strong> 개인정보 처리 시스템의 접속 기록을 최소 1년 이상 보관·관리합니다.</li>
+      <li><strong>개인정보의 암호화:</strong> 비밀번호는 복호화가 불가능한 일방향 암호화(해시)로 저장되어 회사도 확인할 수 없으며, 중요 정보는 저장 및 전송 시 암호화합니다.</li>
+      <li><strong>해킹 등에 대비한 기술적 대책:</strong> 보안 프로그램을 설치·운영하고 주기적으로 갱신·점검합니다.</li>
+      <li><strong>물리적 접근 통제:</strong> 개인정보가 보관된 시스템에 대한 물리적 접근을 통제합니다.</li>
+    </ul>
+  </section>
+
+  <section class="article" id="p10">
+    <h2>제10조 (개인정보 자동 수집 장치의 설치·운영 및 거부)</h2>
+    <ol>
+      <li>회사는 웹사이트 이용 시 이용자의 로그인 상태 유지와 설정 저장을 위해 쿠키를 사용할 수 있습니다. 이용자는 브라우저 설정에서 쿠키 저장을 거부할 수 있으나, 이 경우 일부 기능의 이용이 제한될 수 있습니다.</li>
+      <li>모바일 애플리케이션은 쿠키 대신 기기 식별자 및 앱 내 저장소를 이용합니다.</li>
+      <li><strong>회사는 이용자의 행태정보를 수집하여 맞춤형 광고에 활용하지 않으며, 광고 식별자(ADID/IDFA)를 수집하지 않습니다.</strong></li>
+    </ol>
+  </section>
+
+  <section class="article" id="p11">
+    <h2>제11조 (만 14세 미만 아동의 개인정보)</h2>
+    <ol>
+      <li><strong>회사의 서비스는 만 14세 미만 아동을 대상으로 하지 않으며, 만 14세 미만 아동의 회원 가입을 받지 않습니다.</strong></li>
+      <li>회사는 회원 가입 시 만 14세 이상 여부를 확인합니다.</li>
+      <li>만 14세 미만 아동의 개인정보가 수집된 사실이 확인되는 경우, 회사는 해당 계정을 삭제하고 관련 개인정보를 지체 없이 파기합니다.</li>
+    </ol>
+  </section>
+
+  <section class="article" id="p12">
+    <h2>제12조 (자동화된 결정에 관한 사항)</h2>
+    <p>회사는 개인정보 보호법 제37조의2에 따른 <strong>완전히 자동화된 시스템으로 이용자의 권리 또는 의무에 중대한 영향을 미치는 결정을 하지 않습니다.</strong> 서비스 내에서 제공되는 통계나 추천은 이용자의 서비스 이용을 돕기 위한 참고 정보이며, 이용자의 법적 지위나 권리에 영향을 미치지 않습니다.</p>
+  </section>
+
+  <section class="article" id="p13">
+    <h2>제13조 (개인정보 보호책임자 및 열람청구 접수·처리 부서)</h2>
+    <p>회사는 개인정보 처리에 관한 업무를 총괄하고 정보주체의 불만 처리 및 피해 구제를 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th>개인정보 보호책임자</th><td>김형욱 (직위: 대표)</td></tr>
+          <tr><th>이메일</th><td>haboateam@haboa.life</td></tr>
+          <tr><th>연락처</th><td>010-9052-7563</td></tr>
+          <tr><th>열람청구 접수·처리</th><td>동일 (haboateam@haboa.life)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>이용자는 서비스 이용 중 발생한 모든 개인정보 보호 관련 문의, 불만 처리, 피해 구제를 개인정보 보호책임자에게 요청할 수 있으며, 회사는 지체 없이 답변하고 처리하겠습니다.</p>
+  </section>
+
+  <section class="article" id="p14">
+    <h2>제14조 (권익 침해에 대한 구제 방법)</h2>
+    <p>개인정보 침해로 인한 신고나 상담이 필요한 경우 아래 기관에 문의할 수 있습니다.</p>
+    <ul>
+      <li>개인정보 침해신고센터 (국번없이 118, <a href="https://privacy.kisa.or.kr" target="_blank" rel="noopener">privacy.kisa.or.kr</a>)</li>
+      <li>개인정보 분쟁조정위원회 (1833-6972, <a href="https://www.kopico.go.kr" target="_blank" rel="noopener">www.kopico.go.kr</a>)</li>
+      <li>대검찰청 사이버수사과 (국번없이 1301, www.spo.go.kr)</li>
+      <li>경찰청 사이버수사국 (국번없이 182, ecrm.police.go.kr)</li>
+    </ul>
+    <p>또한 개인정보 보호법 제35조, 제36조, 제37조에 따른 요구에 대하여 공공기관의 장이 행한 처분이나 부작위로 권리 또는 이익을 침해받은 경우에는 행정심판법에 따라 행정심판을 청구할 수 있습니다.</p>
+  </section>
+
+  <section class="article" id="p15">
+    <h2>제15조 (개인정보 처리방침의 변경)</h2>
+    <ol>
+      <li>본 처리방침은 법령, 정책 또는 보안 기술의 변경에 따라 내용이 추가·삭제 또는 수정될 수 있습니다.</li>
+      <li>처리방침을 변경하는 경우 회사는 변경 사항과 시행일을 <strong>시행일 7일 전부터</strong> 서비스 내 공지사항을 통해 공지합니다. 다만 이용자의 권리에 중대한 변경이 발생하는 경우에는 <strong>30일 전부터</strong> 공지하고 개별 통지합니다.</li>
+      <li>회사는 이전 처리방침을 확인할 수 있도록 변경 이력을 관리합니다.</li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <section class="article" id="history">
+    <h2>처리방침 변경 이력</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>버전</th><th>시행일</th><th>주요 변경 내용</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>v1.0</td><td>2026.10.01</td><td>최초 시행</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </main>
 
-<footer>
-  <p>© 2026 HABOA. All rights reserved. &nbsp;·&nbsp; <a href="https://www.haboa.life/haboa-terms.html">서비스 이용약관</a> &nbsp;·&nbsp; <a href="https://www.haboa.life">haboa.life</a></p>
+<footer class="site-footer">
+  <div class="inner">
+    <p class="foot-links">
+      <a href="https://www.haboa.life/haboa-terms.html">서비스 이용약관</a> &nbsp;·&nbsp;
+      <a href="https://www.haboa.life/haboa-privacy.html">개인정보 처리방침</a> &nbsp;·&nbsp;
+      <a href="https://www.haboa.life">haboa.life</a>
+    </p>
+    <p class="foot-copy">© 2026 그럼스테이트(Grum State). All rights reserved.</p>
+  </div>
 </footer>
 
 </body>
